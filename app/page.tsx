@@ -99,20 +99,22 @@ export default function HomePage() {
           <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b7280", marginBottom: 20 }}>
             Free Research Report · 2026
           </p>
-          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.12, color: "#0f172a", margin: "0 0 12px", letterSpacing: "-0.02em" }}>
+          <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.12, color: "#0f172a", margin: "0 0 20px", letterSpacing: "-0.02em" }}>
             Every Major Technology Wave<br />Creates a Window —<br />Then Closes It.
           </h1>
-          <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#374151", margin: "0 0 6px", lineHeight: 1.5 }}>
-            You watched the Internet reshape the economy. Then mobile. Then cloud. Each time, early investors who understood the infrastructure layer did extraordinarily well. Those who waited for consensus caught very little of it.
+          <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#374151", margin: "0 0 20px", lineHeight: 1.6, maxWidth: 520 }}>
+            The Internet. Mobile. Cloud. Each wave rewrote who the winners were — and most investors caught the headline stories long after the infrastructure layer had already priced in. The AI infrastructure window is open right now. This is what that looks like from the inside.
           </p>
-          <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7, margin: "0 0 10px" }}>
-            The AI infrastructure window is open right now.
-          </p>
-          <p style={{ fontSize: "0.9rem", fontStyle: "italic", color: "#6b7280", marginBottom: 28 }}>
-            By Dean Gallagher, Independent Investor
-          </p>
-          <p style={{ fontSize: "1rem", color: "#374151", lineHeight: 1.7, margin: "0 0 28px", maxWidth: 480 }}>
-            Software is replacing jobs across every industry — faster than anyone expected. This free 18,000-word report explains what that means for asset allocation, why most portfolios are positioned in the wrong layer, and where value is concentrating next.
+          <div style={{ borderLeft: "3px solid #1d4ed8", paddingLeft: 16, marginBottom: 24 }}>
+            <p style={{ fontSize: "0.95rem", fontStyle: "italic", color: "#374151", margin: "0 0 4px", lineHeight: 1.5 }}>
+              "Software is replacing jobs across every industry — faster than anyone expected. Most investors are watching the headlines. This report looks at the infrastructure layer underneath."
+            </p>
+            <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "#6b7280", margin: 0 }}>
+              — Dean Gallagher, Independent Investor
+            </p>
+          </div>
+          <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 480 }}>
+            This free 18,000-word report is written for self-directed investors who want to understand the structural shift — not be sold a fund. No positions to buy. No predictions. A research framework you can apply yourself.
           </p>
 
           {/* Book cover */}
@@ -127,9 +129,9 @@ export default function HomePage() {
           {/* Bullets */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              "Why the economic models investors rely on were built for a world that no longer exists",
-              "The 5 infrastructure chokepoints every AI system runs through",
-              "A plain-English research framework — no hype, no speculation",
+              "Why every economic forecast written before 2024 needs to be revisited — and what changed",
+              "The 5 hardware and software chokepoints every AI system runs through (and who controls them)",
+              "How to evaluate AI infrastructure as a self-directed investor — the questions worth asking",
             ].map(b => (
               <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
                 <span style={{ color: "#16a34a", fontSize: 18, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
@@ -139,7 +141,7 @@ export default function HomePage() {
           </div>
 
           {/* Social proof strip */}
-          <div style={{ display: "flex", gap: 24, marginTop: 36, paddingTop: 28, borderTop: "1px solid #e5e7eb" }}>
+          <div style={{ display: "flex", gap: 24, marginTop: 32, paddingTop: 24, borderTop: "1px solid #e5e7eb" }}>
             {[["18,000", "Words"], ["7", "Chapters"], ["Free", "No cost"]].map(([v, l]) => (
               <div key={l}>
                 <p style={{ fontSize: "1.4rem", fontWeight: 700, color: "#0f172a", margin: 0 }}>{v}</p>

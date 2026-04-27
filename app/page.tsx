@@ -125,13 +125,30 @@ export default function HomePage() {
               </div>
               <div>
                 <label style={labelStyle}>Phone <span style={{ fontWeight: 400, color: "#9ca3af" }}>(optional)</span></label>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={e => setPhone(e.target.value)}
-                  placeholder="+1 (555) 000-0000"
-                  style={inputStyle}
-                />
+                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
+                  placeholder="+1 (555) 000-0000" style={inputStyle} />
+              </div>
+              <div>
+                <label style={labelStyle}>Mailing Address <span style={{ fontWeight: 400, color: "#9ca3af" }}>(for your printed copy)</span></label>
+                <input type="text" value={address} onChange={e => setAddress(e.target.value)}
+                  placeholder="123 Main Street" style={inputStyle} />
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 80px 100px", gap: 8 }}>
+                <div>
+                  <label style={labelStyle}>City</label>
+                  <input type="text" value={city} onChange={e => setCity(e.target.value)}
+                    placeholder="Miami" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>State</label>
+                  <input type="text" value={state} onChange={e => setState(e.target.value)}
+                    placeholder="FL" maxLength={2} style={{ ...inputStyle, textTransform: "uppercase" }} />
+                </div>
+                <div>
+                  <label style={labelStyle}>ZIP</label>
+                  <input type="text" value={zip} onChange={e => setZip(e.target.value)}
+                    placeholder="33101" style={inputStyle} />
+                </div>
               </div>
 
               {status === "error" && (

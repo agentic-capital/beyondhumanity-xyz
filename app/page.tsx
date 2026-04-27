@@ -83,7 +83,7 @@ export default function HomePage() {
           <div style={{ textAlign: "center", marginBottom: 28 }}>
             <img
               src="/book-cover.png"
-              alt="Beyond Humanity — Free Research Report"
+              alt="Beyond Humanity — Free Book"
               style={{
                 width: 220,
                 height: "auto",
@@ -93,22 +93,22 @@ export default function HomePage() {
               }}
             />
             <p style={{ fontSize: 11, color: "#9ca3af", marginTop: 12, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              Free · Digital + Printed Copy Shipped
+              Free Book · Digital + Printed Copy Shipped
             </p>
           </div>
 
           <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b7280", margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
-            Free Research Report · 2026
+            Free Book · 2026
           </p>
 
           <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 12, padding: 28, boxShadow: "0 4px 20px rgba(0,0,0,0.06)" }}>
             <div style={{ display: "flex", gap: 16, alignItems: "flex-start", marginBottom: 18 }}>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <h2 style={{ fontSize: 20, fontWeight: 700, color: "#0f172a", margin: "0 0 6px", lineHeight: 1.25 }}>
-                  Get the Free Report
+                  Get the Free Book
                 </h2>
                 <p style={{ fontSize: 13, color: "#6b7280", margin: 0, lineHeight: 1.5 }}>
-                  Free. Instant delivery. No obligation.
+                  Free. Shipped to your door. No obligation.
                 </p>
               </div>
 
@@ -186,7 +186,7 @@ export default function HomePage() {
                   opacity: status === "loading" ? 0.7 : 1,
                 }}
               >
-                {status === "loading" ? "Sending…" : "Send Me the Free Report →"}
+                {status === "loading" ? "Sending…" : "Send Me the Free Book →"}
               </button>
 
               <p style={{ fontSize: 12, color: "#6b7280", textAlign: "center", margin: 0 }}>

@@ -289,7 +289,7 @@ export default function HomePage() {
                 <input ref={addressRef} type="text" value={address} onChange={e => setAddress(e.target.value)}
                   placeholder="Start typing your address…" style={inputStyle} autoComplete="off" />
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 64px 88px", gap: 7 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 56px 80px", gap: 7 }}>
                 <div>
                   <label style={labelStyle}>City</label>
                   <input type="text" value={city} onChange={e => setCity(e.target.value)}

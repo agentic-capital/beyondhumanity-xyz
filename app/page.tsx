@@ -115,6 +115,15 @@ export default function HomePage() {
             Software is replacing jobs across every industry — faster than anyone expected. This free 18,000-word report explains what that means for asset allocation, why most portfolios are positioned in the wrong layer, and where value is concentrating next.
           </p>
 
+          {/* Book cover */}
+          <div style={{ marginBottom: 32 }}>
+            <img
+              src="/book-cover.png"
+              alt="Beyond Humanity — Free Research Report"
+              style={{ width: 160, height: "auto", boxShadow: "0 8px 32px rgba(0,0,0,0.25)", borderRadius: 4 }}
+            />
+          </div>
+
           {/* Bullets */}
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[

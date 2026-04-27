@@ -23,196 +23,170 @@ export default function HomePage() {
     }
   }
 
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    border: "1.5px solid #d1d5db",
+    borderRadius: 4,
+    padding: "13px 16px",
+    fontSize: 15,
+    color: "#111",
+    background: "#fff",
+    outline: "none",
+    boxSizing: "border-box",
+    transition: "border-color 0.15s",
+  };
+
   return (
-    <main style={{ background: "#030a14", minHeight: "100vh", fontFamily: "Georgia, serif" }}>
+    <main style={{ background: "#fff", minHeight: "100vh", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
 
-      {/* HERO */}
-      <section style={{ borderBottom: "1px solid #0f2040", padding: "80px 24px 64px" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: "monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#f5c842", marginBottom: 24 }}>
-            Free Research Report · 2026 Edition
+      {/* ABOVE THE FOLD */}
+      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", minHeight: "100vh" }}>
+
+        {/* LEFT — Headline + credibility */}
+        <div style={{ padding: "48px 0" }}>
+          <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#6b7280", marginBottom: 20 }}>
+            Free Research Report · 2026
           </p>
-          <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", fontWeight: 300, lineHeight: 1, color: "#fff", margin: "0 0 24px" }}>
-            Beyond<br />
-            <em style={{ color: "#f5c842", fontStyle: "italic" }}>Humanity.</em>
+          <h1 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: 800, lineHeight: 1.1, color: "#0f172a", margin: "0 0 20px", letterSpacing: "-0.02em" }}>
+            The AI Agent Economy<br />Is Growing Faster Than<br />Anyone Is Modeling.
           </h1>
-          <p style={{ fontSize: "clamp(1rem, 2.5vw, 1.25rem)", color: "#cbd5e1", lineHeight: 1.7, maxWidth: 600, marginBottom: 16 }}>
-            350 million AI agents are active today. By 2030, more than every human who ever lived.
-            Most investors haven&apos;t processed what this means for markets, capital flows, and where wealth concentrates next.
+          <p style={{ fontSize: "1.1rem", color: "#374151", lineHeight: 1.7, margin: "0 0 32px", maxWidth: 480 }}>
+            350 million AI agents are active today — growing 20% per month. This free 18,000-word report explains what that means, why most investors are positioned in the wrong layer, and where value concentrates next.
           </p>
-          <p style={{ fontSize: "1rem", color: "#94a3b8", lineHeight: 1.7, maxWidth: 580 }}>
-            This 18,000-word report breaks down the economic shift, the infrastructure it runs on,
-            and why the window to position ahead of consensus is closing fast.
-          </p>
-        </div>
-      </section>
 
-      {/* FORM */}
-      <section style={{ padding: "64px 24px" }}>
-        <div style={{ maxWidth: 520, margin: "0 auto" }}>
-          <div style={{ border: "1px solid #f5c842", padding: "40px 36px", background: "#060e1c" }}>
-            <p style={{ fontFamily: "monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#f5c842", marginBottom: 8 }}>
-              Get the Free Report
-            </p>
-            <h2 style={{ fontSize: "1.5rem", fontWeight: 300, color: "#fff", marginBottom: 6 }}>
-              Download <em style={{ color: "#f5c842" }}>Beyond Humanity</em>
-            </h2>
-            <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: 32 }}>
-              18,000 words. No fluff. Delivered to your inbox instantly.
-            </p>
-
-            {status === "success" ? (
-              <div style={{ textAlign: "center", padding: "24px 0" }}>
-                <p style={{ fontSize: "1.5rem", marginBottom: 12 }}>✓</p>
-                <p style={{ color: "#4ade80", fontFamily: "monospace", fontSize: 13, letterSpacing: "0.1em" }}>Report sent — check your inbox.</p>
-                <a
-                  href="/beyond-humanity-report.pdf"
-                  download
-                  style={{ display: "inline-block", marginTop: 20, fontFamily: "monospace", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#f5c842", textDecoration: "none" }}
-                >
-                  ↓ Direct download if email doesn&apos;t arrive
-                </a>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <div>
-                  <label style={{ display: "block", fontFamily: "monospace", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#f5c842", marginBottom: 8 }}>
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={firstName}
-                    onChange={e => setFirstName(e.target.value)}
-                    placeholder="Your first name"
-                    style={{ width: "100%", background: "#030a14", border: "1px solid #0f2040", color: "#fff", padding: "12px 16px", fontSize: 14, outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => e.target.style.borderColor = "#f5c842"}
-                    onBlur={e => e.target.style.borderColor = "#0f2040"}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontFamily: "monospace", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#f5c842", marginBottom: 8 }}>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    style={{ width: "100%", background: "#030a14", border: "1px solid #0f2040", color: "#fff", padding: "12px 16px", fontSize: 14, outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => e.target.style.borderColor = "#f5c842"}
-                    onBlur={e => e.target.style.borderColor = "#0f2040"}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontFamily: "monospace", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#f5c842", marginBottom: 8 }}>
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    placeholder="+1 (555) 000-0000"
-                    style={{ width: "100%", background: "#030a14", border: "1px solid #0f2040", color: "#fff", padding: "12px 16px", fontSize: 14, outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => e.target.style.borderColor = "#f5c842"}
-                    onBlur={e => e.target.style.borderColor = "#0f2040"}
-                  />
-                </div>
-
-                {status === "error" && (
-                  <p style={{ color: "#f87171", fontFamily: "monospace", fontSize: 12 }}>
-                    Something went wrong. Try again or email us directly.
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  style={{
-                    background: "#f5c842", color: "#030a14", border: "none",
-                    padding: "14px 24px", fontFamily: "monospace", fontSize: 12,
-                    letterSpacing: "0.2em", textTransform: "uppercase", cursor: "pointer",
-                    fontWeight: 700, marginTop: 8,
-                    opacity: status === "loading" ? 0.7 : 1
-                  }}
-                >
-                  {status === "loading" ? "Sending…" : "Send Me the Report →"}
-                </button>
-
-                <p style={{ fontSize: 11, color: "#475569", textAlign: "center" }}>
-                  No spam. Unsubscribe anytime.
-                </p>
-              </form>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* SOCIAL PROOF STATS */}
-      <section style={{ borderTop: "1px solid #0f2040", borderBottom: "1px solid #0f2040", padding: "48px 24px" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 1, background: "#0f2040" }}>
-          {[
-            { val: "18,000", label: "Words of research" },
-            { val: "7", label: "Chapters" },
-            { val: "Free", label: "No cost, no catch" },
-          ].map(({ val, label }) => (
-            <div key={label} style={{ background: "#030a14", padding: "32px 24px", textAlign: "center" }}>
-              <p style={{ fontFamily: "monospace", fontSize: "2rem", fontWeight: 700, color: "#f5c842", marginBottom: 8 }}>{val}</p>
-              <p style={{ fontFamily: "monospace", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#64748b" }}>{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* WHAT'S IN THE REPORT */}
-      <section style={{ padding: "64px 24px" }}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <p style={{ fontFamily: "monospace", fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: "#f5c842", marginBottom: 24 }}>What&apos;s Inside</p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "#0f2040" }}>
+          {/* Bullets */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              { ch: "I", title: "The Fracture", desc: "The one economic assumption that broke in 2024 — and why every forecast written before it is now wrong." },
-              { ch: "II", title: "The Evidence", desc: "GAAP-reported revenue. 85% of the Fortune 500 in production. The agent economy is not a thesis — it's a line item." },
-              { ch: "III", title: "The Assumption That Broke", desc: "GDP, wages, inflation — every model was built on a biological constraint that no longer exists." },
-              { ch: "IV", title: "Why Nobody Is Acting", desc: "The Kodak moment for the entire asset management industry. The gap between knowing and acting." },
-              { ch: "V", title: "The Trade", desc: "A 39-month personal account. Every position, every rotation, the drawdown that tested conviction." },
-              { ch: "VI", title: "The Substrate", desc: "ASML. TSMC. SK Hynix. The 5 chokepoints that every AI agent runs on — and where durable value accrues." },
-              { ch: "VII", title: "The Window", desc: "18 to 24 months. When this closes, the repricing is over. Where we are right now." },
-            ].map(({ ch, title, desc }) => (
-              <div key={ch} style={{ background: "#060e1c", padding: "20px 24px", display: "flex", gap: 20, alignItems: "flex-start" }}>
-                <span style={{ fontFamily: "monospace", fontSize: 12, color: "#f5c842", opacity: 0.6, width: 24, flexShrink: 0, marginTop: 2 }}>{ch}</span>
-                <div>
-                  <p style={{ color: "#fff", fontSize: "0.9rem", marginBottom: 4 }}>{title}</p>
-                  <p style={{ color: "#64748b", fontSize: "0.8rem", lineHeight: 1.6 }}>{desc}</p>
-                </div>
+              "Why every economic model written before 2024 is now wrong",
+              "The 5 infrastructure chokepoints every AI agent runs on",
+              "The trade thesis — and how one investor is positioned",
+            ].map(b => (
+              <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                <span style={{ color: "#16a34a", fontSize: 18, lineHeight: 1.4, flexShrink: 0 }}>✓</span>
+                <span style={{ color: "#374151", fontSize: "0.95rem", lineHeight: 1.5 }}>{b}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Social proof strip */}
+          <div style={{ display: "flex", gap: 24, marginTop: 36, paddingTop: 28, borderTop: "1px solid #e5e7eb" }}>
+            {[["18,000", "Words"], ["7", "Chapters"], ["Free", "No cost"]].map(([v, l]) => (
+              <div key={l}>
+                <p style={{ fontSize: "1.4rem", fontWeight: 700, color: "#0f172a", margin: 0 }}>{v}</p>
+                <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: "2px 0 0", textTransform: "uppercase", letterSpacing: "0.05em" }}>{l}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* RIGHT — Form box */}
+        <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 12, padding: "40px 36px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
+          {status === "success" ? (
+            <div style={{ textAlign: "center", padding: "32px 0" }}>
+              <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
+              <h3 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>Check your inbox.</h3>
+              <p style={{ color: "#6b7280", marginBottom: 24 }}>Your copy of <em>Beyond Humanity</em> is on its way.</p>
+              <a href="/beyond-humanity-report.pdf" download
+                style={{ display: "inline-block", background: "#0f172a", color: "#fff", padding: "12px 24px", borderRadius: 6, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>
+                ↓ Direct Download
+              </a>
+            </div>
+          ) : (
+            <>
+              <h2 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#0f172a", marginBottom: 6 }}>
+                Get the Free Report
+              </h2>
+              <p style={{ fontSize: "0.9rem", color: "#6b7280", marginBottom: 28, lineHeight: 1.5 }}>
+                Instant delivery. No spam. Unsubscribe anytime.
+              </p>
+
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 6 }}>First Name</label>
+                  <input type="text" required value={firstName} onChange={e => setFirstName(e.target.value)}
+                    placeholder="Your first name" style={inputStyle}
+                    onFocus={e => e.currentTarget.style.borderColor = "#0f172a"}
+                    onBlur={e => e.currentTarget.style.borderColor = "#d1d5db"} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 6 }}>Email Address</label>
+                  <input type="email" required value={email} onChange={e => setEmail(e.target.value)}
+                    placeholder="you@example.com" style={inputStyle}
+                    onFocus={e => e.currentTarget.style.borderColor = "#0f172a"}
+                    onBlur={e => e.currentTarget.style.borderColor = "#d1d5db"} />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#374151", marginBottom: 6 }}>Phone Number</label>
+                  <input type="tel" required value={phone} onChange={e => setPhone(e.target.value)}
+                    placeholder="+1 (555) 000-0000" style={inputStyle}
+                    onFocus={e => e.currentTarget.style.borderColor = "#0f172a"}
+                    onBlur={e => e.currentTarget.style.borderColor = "#d1d5db"} />
+                </div>
+
+                {status === "error" && (
+                  <p style={{ color: "#dc2626", fontSize: 13, margin: 0 }}>Something went wrong. Please try again.</p>
+                )}
+
+                <button type="submit" disabled={status === "loading"}
+                  style={{
+                    background: "#0f172a", color: "#fff", border: "none", borderRadius: 6,
+                    padding: "15px 24px", fontSize: 15, fontWeight: 700, cursor: "pointer",
+                    letterSpacing: "0.01em", marginTop: 4,
+                    opacity: status === "loading" ? 0.7 : 1,
+                  }}>
+                  {status === "loading" ? "Sending…" : "Send Me the Free Report →"}
+                </button>
+
+                <p style={{ fontSize: 12, color: "#9ca3af", textAlign: "center", margin: 0 }}>
+                  🔒 Your information is safe. No spam, ever.
+                </p>
+              </form>
+            </>
+          )}
+        </div>
       </section>
 
-      {/* BOTTOM CTA */}
-      <section style={{ borderTop: "1px solid #0f2040", padding: "64px 24px", textAlign: "center" }}>
-        <div style={{ maxWidth: 520, margin: "0 auto" }}>
-          <h2 style={{ fontSize: "1.75rem", fontWeight: 300, color: "#fff", marginBottom: 16 }}>
-            The window is open.<br /><em style={{ color: "#f5c842" }}>Get the report.</em>
-          </h2>
-          <p style={{ color: "#64748b", fontSize: "0.9rem", marginBottom: 32 }}>Free. Instant delivery. No obligation.</p>
-          <a
-            href="#"
-            onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            style={{ display: "inline-block", background: "#f5c842", color: "#030a14", padding: "14px 32px", fontFamily: "monospace", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}
-          >
-            Download Free Report →
-          </a>
+      {/* WHAT'S INSIDE — below fold */}
+      <section style={{ background: "#f8fafc", borderTop: "1px solid #e5e7eb", padding: "80px 24px" }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <h2 style={{ fontSize: "1.75rem", fontWeight: 700, color: "#0f172a", marginBottom: 8, textAlign: "center" }}>What's Inside</h2>
+          <p style={{ color: "#6b7280", textAlign: "center", marginBottom: 48, fontSize: "1rem" }}>Seven chapters. Every concept explained plainly.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {[
+              ["I", "The Fracture", "The one economic assumption that broke in 2024 — and why every forecast written before it is now wrong."],
+              ["II", "The Evidence", "GAAP-reported revenue. Fortune 500 deployment. The agent economy is already a line item."],
+              ["III", "The Assumption That Broke", "GDP, wages, inflation — every model built on a biological constraint that no longer exists."],
+              ["IV", "Why Nobody Is Acting", "The cognitive dissonance in markets right now. The Kodak moment for asset management."],
+              ["V", "The Trade", "A 39-month personal account. Every position, every rotation, the drawdown, the conviction."],
+              ["VI", "The Substrate", "The 5 chokepoints every AI agent runs on — lithography, fabrication, memory, power, inference."],
+              ["VII", "The Window", "18 to 24 months before consensus catches up. Where we are right now."],
+            ].map(([ch, title, desc], i) => (
+              <div key={ch} style={{ display: "flex", gap: 20, padding: "24px 28px", background: i % 2 === 0 ? "#fff" : "#f8fafc", border: "1px solid #e5e7eb", borderTop: i === 0 ? "1px solid #e5e7eb" : "none" }}>
+                <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#9ca3af", width: 20, flexShrink: 0, paddingTop: 2 }}>{ch}</span>
+                <div>
+                  <p style={{ fontWeight: 700, color: "#0f172a", margin: "0 0 4px", fontSize: "0.95rem" }}>{title}</p>
+                  <p style={{ color: "#6b7280", margin: 0, fontSize: "0.875rem", lineHeight: 1.6 }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div style={{ textAlign: "center", marginTop: 56 }}>
+            <h3 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#0f172a", marginBottom: 12 }}>Ready to read it?</h3>
+            <p style={{ color: "#6b7280", marginBottom: 28 }}>Free. Instant. No obligation.</p>
+            <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              style={{ display: "inline-block", background: "#0f172a", color: "#fff", padding: "15px 36px", borderRadius: 6, fontSize: 15, fontWeight: 700, textDecoration: "none" }}>
+              Get the Free Report →
+            </a>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer style={{ borderTop: "1px solid #0f2040", padding: "24px", textAlign: "center" }}>
-        <p style={{ fontFamily: "monospace", fontSize: 10, color: "#334155", lineHeight: 1.8 }}>
-          Beyond Humanity is an independent economic research publication. This report is for informational purposes only and does not constitute investment advice or an offer to buy or sell any security. Past performance is not indicative of future results.
+      <footer style={{ borderTop: "1px solid #e5e7eb", padding: "24px", textAlign: "center" }}>
+        <p style={{ fontSize: 12, color: "#9ca3af", lineHeight: 1.7, maxWidth: 700, margin: "0 auto" }}>
+          Beyond Humanity is an independent economic research publication. This report is for informational and educational purposes only. It does not constitute investment advice or an offer to buy or sell any security. All views are those of the author.
         </p>
       </footer>
 

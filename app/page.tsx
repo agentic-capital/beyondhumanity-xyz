@@ -79,6 +79,24 @@ export default function HomePage() {
 
         {/* FORM COLUMN */}
         <div className="bh-form-col">
+          {/* Big book cover */}
+          <div style={{ textAlign: "center", marginBottom: 28 }}>
+            <img
+              src="/book-cover.png"
+              alt="Beyond Humanity — Free Research Report"
+              style={{
+                width: 220,
+                height: "auto",
+                borderRadius: 6,
+                boxShadow: "0 24px 64px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.25), -8px 4px 0 rgba(0,0,0,0.15), -4px 2px 0 rgba(0,0,0,0.1)",
+                display: "inline-block",
+              }}
+            />
+            <p style={{ fontSize: 11, color: "#9ca3af", marginTop: 12, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              Free · Digital + Printed Copy Shipped
+            </p>
+          </div>
+
           <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6b7280", margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
             Free Research Report · 2026
           </p>

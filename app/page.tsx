@@ -93,11 +93,7 @@ export default function HomePage() {
                   Free. Instant delivery. No obligation.
                 </p>
               </div>
-              <img
-                src="/book-cover.png"
-                alt="Beyond Humanity report cover"
-                style={{ width: 80, height: "auto", borderRadius: 3, boxShadow: "0 4px 12px rgba(0,0,0,0.18)", flexShrink: 0 }}
-              />
+
             </div>
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 14 }}>

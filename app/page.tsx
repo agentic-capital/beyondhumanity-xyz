@@ -124,12 +124,12 @@ export default function HomePage() {
                 />
               </div>
               <div>
-                <label style={labelStyle}>Phone <span style={{ fontWeight: 400, color: "#9ca3af" }}>(optional)</span></label>
+                <label style={labelStyle}>Phone</label>
                 <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
                   placeholder="+1 (555) 000-0000" style={inputStyle} />
               </div>
               <div>
-                <label style={labelStyle}>Mailing Address <span style={{ fontWeight: 400, color: "#9ca3af" }}>(for your printed copy)</span></label>
+                <label style={labelStyle}>Mailing Address</label>
                 <input type="text" value={address} onChange={e => setAddress(e.target.value)}
                   placeholder="123 Main Street" style={inputStyle} />
               </div>

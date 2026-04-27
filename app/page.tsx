@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
@@ -12,8 +12,8 @@ export default function HomePage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
-  /* Google Places disabled — re-enable after domain restriction set in Google Cloud */
-  /* useEffect(() => {
+  const addressRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
     // Load Google Places script
     const scriptId = "google-places-script";
     if (document.getElementById(scriptId)) return;
@@ -23,9 +23,9 @@ export default function HomePage() {
     script.async = true;
 script.onload = () => initAutocomplete();
     document.head.appendChild(script);
-  }, []); */
+  }, []);
 
-  /* function initAutocomplete() {
+  function initAutocomplete() {
     if (!addressRef.current || !(window as unknown as Record<string,unknown>).google) return;
     const g = (window as unknown as { google: { maps: { places: { Autocomplete: new (el: HTMLElement, opts: object) => { addListener: (e: string, cb: () => void) => void; getPlace: () => { address_components?: Array<{ long_name: string; short_name: string; types: string[] }>, formatted_address?: string } } } } } }).google;
     const autocomplete = new g.maps.places.Autocomplete(addressRef.current, {
@@ -48,7 +48,7 @@ script.onload = () => initAutocomplete();
       setState(adminArea);
       setZip(postalCode);
     });
-  } */
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -285,8 +285,8 @@ script.onload = () => initAutocomplete();
               </div>
               <div>
                 <label style={labelStyle}>Mailing Address</label>
-                <input type="text" value={address} onChange={e => setAddress(e.target.value)}
-                  placeholder="123 Main Street" style={inputStyle} />
+                <input ref={addressRef} type="text" value={address} onChange={e => setAddress(e.target.value)}
+                  placeholder="Start typing your address…" style={inputStyle} autoComplete="off" />
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 56px 80px", gap: 7 }}>
                 <div>

@@ -129,17 +129,22 @@ export default function HomePage() {
         ══════════════════════════════════════ */}
         <div className="bh-content-col">
 
-          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6b7280", margin: "0 0 12px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
+          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#6b7280", margin: "0 0 10px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}>
             Free Book · 2026
+          </p>
+
+          {/* Pre-headline pattern hook */}
+          <p style={{ fontSize: 14, fontWeight: 700, color: "#6b7280", margin: "0 0 8px", letterSpacing: "0.01em" }}>
+            Internet. Mobile. Cloud. Each created a window.
           </p>
 
           <h1 style={{ fontSize: "clamp(24px, 6vw, 34px)", fontWeight: 800, lineHeight: 1.15, color: "#0f172a", margin: "0 0 12px", letterSpacing: "-0.025em" }}>
             Every Major Technology Wave Creates a Window — Then Closes It.
           </h1>
 
-          {/* Mobile: 1-sentence hook only */}
+          {/* Mobile: 1-sentence hook for self-directed investor */}
           <p style={{ fontSize: 15, color: "#374151", lineHeight: 1.6, margin: "0 0 14px" }}>
-            You watched the Internet, mobile, and cloud reward the investors who moved early. The AI infrastructure window is open right now.
+            If you manage your own account at Fidelity or Schwab, this book was written for you. The AI infrastructure window is open right now — and this is the research framework to understand it.
           </p>
 
           {/* Desktop: extended copy */}
@@ -148,7 +153,7 @@ export default function HomePage() {
               Each time, early investors who understood the <strong>infrastructure layer</strong> did extraordinarily well. Those who waited for consensus caught very little of it.
             </p>
             <p style={{ fontSize: 16, color: "#0f172a", lineHeight: 1.68, margin: "0 0 24px", fontWeight: 600 }}>
-              This book explains exactly what to look for — in plain English, with no speculation and no hype.
+              This book is written for self-directed investors who do their own research — not advisors, not funds. Plain English, no hype, no speculation.
             </p>
           </div>
 
@@ -195,6 +200,12 @@ export default function HomePage() {
             <p style={{ fontSize: 11, color: "#9ca3af", marginTop: 8, fontFamily: "monospace", letterSpacing: "0.1em", textTransform: "uppercase", lineHeight: 1.5 }}>
               18,000 Words · 7 Chapters<br />Free · Printed Copy Shipped
             </p>
+          </div>
+
+          {/* Trust badge above form */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, justifyContent: "center", marginBottom: 10 }}>
+            <span style={{ fontSize: 13, color: "#374151", fontWeight: 600 }}>🔒</span>
+            <span style={{ fontSize: 12, color: "#6b7280" }}>No sales calls. No pitches. Just the book.</span>
           </div>
 
           {/* Form card */}
@@ -267,7 +278,7 @@ export default function HomePage() {
               </button>
 
               <p style={{ fontSize: 12, color: "#6b7280", textAlign: "center", margin: "2px 0 0" }}>
-                🔒 No sales calls. No pitches. Just the book.
+                Printed copy shipped free to your door.
               </p>
             </form>
           </div>

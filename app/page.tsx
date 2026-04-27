@@ -45,11 +45,11 @@ export default function HomePage() {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 64px;
-          align-items: center;
+          align-items: start;
           min-height: 100vh;
           max-width: 1100px;
           margin: 0 auto;
-          padding: 0 24px;
+          padding: 48px 24px;
         }
         .headline-col {
           padding: 48px 0;
@@ -102,28 +102,16 @@ export default function HomePage() {
           <h1 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, lineHeight: 1.12, color: "#0f172a", margin: "0 0 20px", letterSpacing: "-0.02em" }}>
             Every Major Technology Wave<br />Creates a Window —<br />Then Closes It.
           </h1>
-          <p style={{ fontSize: "1.05rem", fontWeight: 500, color: "#374151", margin: "0 0 20px", lineHeight: 1.6, maxWidth: 520 }}>
-            The Internet. Mobile. Cloud. Each wave rewrote who the winners were — and most investors caught the headline stories long after the infrastructure layer had already priced in. The AI infrastructure window is open right now. This is what that looks like from the inside.
+          <p style={{ fontSize: "1rem", fontWeight: 500, color: "#374151", margin: "0 0 16px", lineHeight: 1.6, maxWidth: 520 }}>
+            The Internet. Mobile. Cloud. Each wave rewrote who the winners were — and most investors caught the headline stories long after the infrastructure layer had already priced in.
           </p>
-          <div style={{ borderLeft: "3px solid #1d4ed8", paddingLeft: 16, marginBottom: 24 }}>
-            <p style={{ fontSize: "0.95rem", fontStyle: "italic", color: "#374151", margin: "0 0 4px", lineHeight: 1.5 }}>
-              "Software is replacing jobs across every industry — faster than anyone expected. Most investors are watching the headlines. This report looks at the infrastructure layer underneath."
+          <div style={{ borderLeft: "3px solid #1d4ed8", paddingLeft: 16, marginBottom: 20 }}>
+            <p style={{ fontSize: "0.9rem", fontStyle: "italic", color: "#374151", margin: "0 0 4px", lineHeight: 1.5 }}>
+              "Software is replacing jobs across every industry — faster than anyone expected. The AI infrastructure window is open right now. This report explains what that means for self-directed investors."
             </p>
-            <p style={{ fontSize: "0.85rem", fontWeight: 600, color: "#6b7280", margin: 0 }}>
+            <p style={{ fontSize: "0.82rem", fontWeight: 600, color: "#6b7280", margin: 0 }}>
               — Dean Gallagher, Independent Investor
             </p>
-          </div>
-          <p style={{ fontSize: "0.95rem", color: "#374151", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 480 }}>
-            This free 18,000-word report is written for self-directed investors who want to understand the structural shift — not be sold a fund. No positions to buy. No predictions. A research framework you can apply yourself.
-          </p>
-
-          {/* Book cover */}
-          <div style={{ marginBottom: 32 }}>
-            <img
-              src="/book-cover.png"
-              alt="Beyond Humanity — Free Research Report"
-              style={{ width: 160, height: "auto", boxShadow: "0 8px 32px rgba(0,0,0,0.25)", borderRadius: 4 }}
-            />
           </div>
 
           {/* Bullets */}
@@ -153,7 +141,7 @@ export default function HomePage() {
 
         {/* RIGHT — Form box */}
         <div className="form-col">
-          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 12, padding: "40px 36px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
+          <div style={{ background: "#f8fafc", border: "1px solid #e2e8f0", borderRadius: 12, padding: "32px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
             {status === "success" ? (
               <div style={{ textAlign: "center", padding: "32px 0" }}>
                 <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
@@ -166,10 +154,20 @@ export default function HomePage() {
               </div>
             ) : (
               <>
-                <h2 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#0f172a", marginBottom: 6 }}>
-                  Get the Free Report
+                {/* Book cover preview */}
+                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20, paddingBottom: 20, borderBottom: "1px solid #e5e7eb" }}>
+                  <img src="/book-cover.png" alt="Beyond Humanity report cover"
+                    style={{ width: 52, height: "auto", borderRadius: 3, boxShadow: "0 4px 12px rgba(0,0,0,0.2)", flexShrink: 0 }} />
+                  <div>
+                    <p style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "#6b7280", margin: "0 0 2px" }}>Free Report</p>
+                    <p style={{ fontSize: "1rem", fontWeight: 700, color: "#0f172a", margin: "0 0 2px" }}>Beyond Humanity</p>
+                    <p style={{ fontSize: "0.78rem", color: "#6b7280", margin: 0 }}>18,000 words · 7 chapters · Instant delivery</p>
+                  </div>
+                </div>
+                <h2 style={{ fontSize: "1.25rem", fontWeight: 700, color: "#0f172a", marginBottom: 6 }}>
+                  Get Your Free Copy
                 </h2>
-                <p style={{ fontSize: "0.9rem", color: "#6b7280", marginBottom: 28, lineHeight: 1.5 }}>
+                <p style={{ fontSize: "0.875rem", color: "#6b7280", marginBottom: 20, lineHeight: 1.5 }}>
                   Free. Instant delivery. No obligation.
                 </p>
 

@@ -5,6 +5,7 @@ export default function HomePage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
+  const [phone, setPhone] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -13,7 +14,7 @@ export default function HomePage() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
+        body: JSON.stringify({ email, firstName, phone }),
       });
       if (!res.ok) throw new Error();
       setStatus("success");
@@ -99,6 +100,21 @@ export default function HomePage() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="you@example.com"
+                    style={{ width: "100%", background: "#030a14", border: "1px solid #0f2040", color: "#fff", padding: "12px 16px", fontSize: 14, outline: "none", boxSizing: "border-box" }}
+                    onFocus={e => e.target.style.borderColor = "#f5c842"}
+                    onBlur={e => e.target.style.borderColor = "#0f2040"}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: "block", fontFamily: "monospace", fontSize: 10, letterSpacing: "0.25em", textTransform: "uppercase", color: "#f5c842", marginBottom: 8 }}>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    placeholder="+1 (555) 000-0000"
                     style={{ width: "100%", background: "#030a14", border: "1px solid #0f2040", color: "#fff", padding: "12px 16px", fontSize: 14, outline: "none", boxSizing: "border-box" }}
                     onFocus={e => e.target.style.borderColor = "#f5c842"}
                     onBlur={e => e.target.style.borderColor = "#0f2040"}

@@ -5,7 +5,7 @@ const BREVO_LIST_ID = parseInt(process.env.BREVO_LIST_ID || "28");
 const CLOSE_API_KEY = process.env.CLOSE_API_KEY;
 
 export async function POST(req: NextRequest) {
-  const { email, firstName } = await req.json();
+  const { email, firstName, phone } = await req.json();
   if (!email?.includes("@")) return NextResponse.json({ error: "Invalid email" }, { status: 400 });
 
   // 1. Add/update contact in Brevo with list + source attribute
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     headers: { "api-key": BREVO_KEY, "Content-Type": "application/json" },
     body: JSON.stringify({
       email,
-      attributes: { FIRSTNAME: firstName || "", SOURCE: "beyondhumanity.xyz" },
+      attributes: { FIRSTNAME: firstName || "", SMS: phone || "", SOURCE: "beyondhumanity.xyz" },
       listIds: [BREVO_LIST_ID],
       updateEnabled: true,
     }),
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         name: firstName ? `${firstName} — Beyond Humanity` : `Lead — ${email}`,
-        contacts: [{ name: firstName || email, emails: [{ email, type: "office" }] }],
+        contacts: [{ name: firstName || email, emails: [{ email, type: "office" }], phones: phone ? [{ phone, type: "mobile" }] : [] }],
         custom: { Source: "beyondhumanity.xyz" },
       }),
     }).catch(console.error);

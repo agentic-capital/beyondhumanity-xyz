@@ -89,8 +89,8 @@ export default function HomePage() {
 
   const bullets = [
     "Why the economic models investors rely on were built for a world that no longer exists",
-    "The 5 infrastructure chokepoints every AI system runs through — and why they matter to your portfolio",
-    "A plain-English research framework any self-directed Fidelity or Schwab investor can apply today",
+    "The 5 infrastructure chokepoints every AI system runs through: why they matter to your portfolio",
+    "A plain-English research framework any self-directed investor can apply today",
   ];
 
   return (
@@ -173,16 +173,16 @@ export default function HomePage() {
 
           {/* Pre-headline pattern hook */}
           <p style={{ fontSize: 14, fontWeight: 700, color: "#6b7280", margin: "0 0 8px", letterSpacing: "0.01em" }}>
-            Internet. Mobile. Cloud. Each created a window.
+            The internet. Mobile. Cloud computing. Each one created the same opportunity.
           </p>
 
           <h1 style={{ fontSize: "clamp(24px, 6vw, 34px)", fontWeight: 800, lineHeight: 1.15, color: "#0f172a", margin: "0 0 12px", letterSpacing: "-0.025em" }}>
-            Every Major Technology Wave Creates a Window — Then Closes It.
+            Every Major Technology Wave Opens a Window. Then It Closes.
           </h1>
 
           {/* Mobile: 1-sentence hook for self-directed investor */}
           <p style={{ fontSize: 15, color: "#374151", lineHeight: 1.6, margin: "0 0 14px" }}>
-            If you manage your own account at Fidelity or Schwab, this book was written for you. The AI infrastructure window is open right now — and this is the research framework to understand it.
+            If you manage your own investments, this book was written for you. The window is open right now. And this is the research that explains why.
           </p>
 
           {/* Desktop: extended copy */}
@@ -191,7 +191,7 @@ export default function HomePage() {
               Each time, early investors who understood the <strong>infrastructure layer</strong> did extraordinarily well. Those who waited for consensus caught very little of it.
             </p>
             <p style={{ fontSize: 16, color: "#0f172a", lineHeight: 1.68, margin: "0 0 24px", fontWeight: 600 }}>
-              This book is written for self-directed investors who do their own research — not advisors, not funds. Plain English, no hype, no speculation.
+              Written for self-directed investors who do their own research. Plain English. No hype. No speculation.
             </p>
           </div>
 
@@ -226,7 +226,7 @@ export default function HomePage() {
           <div style={{ textAlign: "center", margin: "4px 0 14px" }}>
             <img
               src="/book-cover.png"
-              alt="Beyond Humanity — Free Book"
+              alt="Beyond Humanity. Free Book"
               style={{
                 width: 190,
                 height: "auto",

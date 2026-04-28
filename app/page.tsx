@@ -14,14 +14,26 @@ export default function HomePage() {
   const [zip, setZip] = useState("");
   const addressRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    // Load Google Places script
     const scriptId = "google-places-script";
-    if (document.getElementById(scriptId)) return;
+    const win = window as unknown as { google?: { maps?: { places?: object } } };
+    // If already loaded, init directly
+    if (win.google?.maps?.places) {
+      initAutocomplete();
+      return;
+    }
+    // If script tag already exists, wait for it
+    if (document.getElementById(scriptId)) {
+      const interval = setInterval(() => {
+        if (win.google?.maps?.places) { clearInterval(interval); initAutocomplete(); }
+      }, 100);
+      return;
+    }
+    // Load fresh
     const script = document.createElement("script");
     script.id = scriptId;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCTCF7dQIk4B-BxtjVU0qIcPbKJCuIKBSg&libraries=places`;
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCTCF7dQIk4B-BxtjVU0qIcPbKJCuIKBSg&libraries=places";
     script.async = true;
-script.onload = () => initAutocomplete();
+    script.onload = () => initAutocomplete();
     document.head.appendChild(script);
   }, []);
 

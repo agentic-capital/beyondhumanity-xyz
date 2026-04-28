@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 type Variant = {
@@ -20,6 +20,15 @@ const TEAL = "#00c4e0";
 const BORDER = "#1e2c44";
 const MUTED = "#8a9bb3";
 
+// Extend window type for Google Maps
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    google?: any;
+    initGooglePlaces?: () => void;
+  }
+}
+
 export default function VariantClient({ variant }: { variant: Variant }) {
   const router = useRouter();
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
@@ -30,6 +39,81 @@ export default function VariantClient({ variant }: { variant: Variant }) {
   const [city, setCity] = useState("");
   const [stateField, setStateField] = useState("");
   const [zip, setZip] = useState("");
+
+  const addressInputRef = useRef<HTMLInputElement>(null);
+  const autocompleteRef = useRef<unknown>(null);
+
+  const initAutocomplete = useCallback(() => {
+    if (!addressInputRef.current || !window.google?.maps?.places) return;
+    if (autocompleteRef.current) return; // already initialized
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ac = new (window.google.maps.places.Autocomplete as any)(
+      addressInputRef.current,
+      {
+        types: ["address"],
+        componentRestrictions: { country: "us" },
+        fields: ["address_components", "formatted_address"],
+      }
+    );
+    autocompleteRef.current = ac;
+
+    ac.addListener("place_changed", () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const place = ac.getPlace() as any;
+      if (!place?.address_components) return;
+
+      let streetNumber = "";
+      let route = "";
+      let cityVal = "";
+      let stateVal = "";
+      let zipVal = "";
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      for (const component of place.address_components as any[]) {
+        const types: string[] = component.types;
+        if (types.includes("street_number")) streetNumber = component.long_name;
+        if (types.includes("route")) route = component.short_name;
+        if (types.includes("locality")) cityVal = component.long_name;
+        if (types.includes("administrative_area_level_1")) stateVal = component.short_name;
+        if (types.includes("postal_code")) zipVal = component.long_name;
+      }
+
+      const streetAddress = [streetNumber, route].filter(Boolean).join(" ");
+      setAddress(streetAddress);
+      setCity(cityVal);
+      setStateField(stateVal);
+      setZip(zipVal);
+    });
+  }, []);
+
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_KEY;
+    if (!apiKey) return;
+
+    // If already loaded
+    if (window.google?.maps?.places) {
+      initAutocomplete();
+      return;
+    }
+
+    // Set up callback
+    window.initGooglePlaces = initAutocomplete;
+
+    // Inject script once
+    if (!document.getElementById("google-places-script")) {
+      const script = document.createElement("script");
+      script.id = "google-places-script";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initGooglePlaces`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      window.initGooglePlaces = undefined;
+    };
+  }, [initAutocomplete]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -108,6 +192,36 @@ export default function VariantClient({ variant }: { variant: Variant }) {
         .bh-btn:active { transform: translateY(1px); }
         .bh-btn:disabled { opacity: 0.7; cursor: default; }
         input::placeholder { color: #4a5a73; }
+        /* Style the Google Places autocomplete dropdown to match dark theme */
+        .pac-container {
+          background: #0a1828 !important;
+          border: 1px solid #1e2c44 !important;
+          border-radius: 6px !important;
+          margin-top: 4px !important;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+        }
+        .pac-item {
+          background: #0a1828 !important;
+          color: #cdd5e1 !important;
+          border-top: 1px solid #1e2c44 !important;
+          padding: 10px 14px !important;
+          cursor: pointer !important;
+          font-size: 14px !important;
+        }
+        .pac-item:hover, .pac-item-selected {
+          background: #0f2035 !important;
+        }
+        .pac-item-query {
+          color: #ffffff !important;
+          font-size: 14px !important;
+        }
+        .pac-matched {
+          color: #f5c842 !important;
+          font-weight: 700 !important;
+        }
+        .pac-icon { display: none !important; }
+        .pac-logo::after { display: none !important; }
       `}</style>
 
       <div className="bh-wrap">
@@ -238,8 +352,15 @@ export default function VariantClient({ variant }: { variant: Variant }) {
               </div>
               <div>
                 <label style={labelStyle}>Mailing address</label>
-                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Street address" style={inputStyle} />
+                <input
+                  ref={addressInputRef}
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Start typing your address…"
+                  style={inputStyle}
+                  autoComplete="off"
+                />
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 86px", gap: 8 }}>
                 <div>

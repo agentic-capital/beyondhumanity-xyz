@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palm Beach County Campaign Strategy — Agentic Capital</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #03090e;
+    color: #e8e8e8;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    padding: 0 0 80px;
+  }
+  .header {
+    background: #030a14;
+    border-bottom: 1px solid #1a2a3a;
+    padding: 40px 24px 32px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #00c4e0;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(24px, 5vw, 40px);
+    font-weight: 800;
+    color: #f5c842;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    color: #8a9ab0;
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .section {
+    margin-top: 48px;
+  }
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #00c4e0;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1a2a3a;
+  }
+  h2 {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    color: #f5c842;
+    margin-bottom: 16px;
+    margin-top: 32px;
+  }
+  h2:first-of-type { margin-top: 0; }
+  h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    margin-top: 24px;
+  }
+  p { margin-bottom: 14px; color: #c8d4e0; }
+  .tier-card {
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .tier-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5c842;
+    margin-bottom: 6px;
+  }
+  .tier-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .tier-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .tag {
+    background: #0d1f30;
+    border: 1px solid #1e3348;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #8ab4cc;
+  }
+  .tag.gold { border-color: #4a3800; color: #f5c842; background: #1a1000; }
+  .tag.teal { border-color: #003a40; color: #00c4e0; background: #001820; }
+  .prospect-card {
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-left: 3px solid #f5c842;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .prospect-card.teal { border-left-color: #00c4e0; }
+  .prospect-card.white { border-left-color: #ffffff; }
+  .prospect-rank {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5c842;
+    margin-bottom: 4px;
+  }
+  .prospect-rank.teal { color: #00c4e0; }
+  .prospect-rank.white { color: #ffffff; }
+  .prospect-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  ul {
+    padding-left: 18px;
+    margin-bottom: 14px;
+    color: #c8d4e0;
+  }
+  li { margin-bottom: 6px; }
+  li strong { color: #ffffff; }
+  .zip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .zip-item {
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .zip-item.priority { border-color: #2a3800; background: #0e1400; }
+  .zip-code { font-size: 18px; font-weight: 700; color: #f5c842; font-family: monospace; }
+  .zip-code.teal { color: #00c4e0; }
+  .zip-desc { font-size: 12px; color: #8a9ab0; margin-top: 3px; }
+  .zip-item.priority .zip-desc { color: #a0b060; }
+  .target-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .target-label { font-size: 13px; color: #8a9ab0; min-width: 120px; }
+  .target-value { font-size: 14px; color: #fff; font-weight: 600; flex: 1; }
+  .highlight-box {
+    background: #0a1a08;
+    border: 1px solid #1a3a18;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 32px;
+  }
+  .highlight-box .title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #a0e080;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .moat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .moat-item {
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #c8d4e0;
+  }
+  .moat-item .label { font-size: 10px; color: #f5c842; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: #060f18;
+    border: 1px solid #1a2a3a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+  }
+  .stat-num { font-size: 28px; font-weight: 800; color: #f5c842; }
+  .stat-num.teal { color: #00c4e0; }
+  .stat-label { font-size: 11px; color: #8a9ab0; margin-top: 4px; }
+  .divider { border: none; border-top: 1px solid #1a2a3a; margin: 36px 0; }
+  .footer {
+    text-align: center;
+    padding: 32px 20px 0;
+    font-size: 12px;
+    color: #3a4a5a;
+  }
+  @media (max-width: 600px) {
+    .moat-grid { grid-template-columns: 1fr; }
+    .stat-row { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">Agentic Capital — Internal Strategy Brief</div>
+  <h1>Palm Beach County<br>Campaign Playbook</h1>
+  <p class="subtitle">Target audience, competition, AdWords spec, and prospect profiles for the Beyond Humanity campaign</p>
+</div>
+
+<div class="container">
+
+  <!-- Market Size -->
+  <div class="section">
+    <div class="section-title">Market Size</div>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num">1.58M</div>
+        <div class="stat-label">Palm Beach County population</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num teal">~525k</div>
+        <div class="stat-label">Age 55+ residents</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">~40k</div>
+        <div class="stat-label">Households $2.5M+ liquid (est.)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num teal">15–20k</div>
+        <div class="stat-label">Qualified + on YouTube Shorts</div>
+      </div>
+    </div>
+    <p>Palm Beach County has 58+ Forbes billionaires and a combined top-resident net worth of ~$495B. The median county income ($84k) masks extreme wealth concentration at the top. One of the 3 wealthiest counties in the United States.</p>
+    <p>The addressable YouTube Shorts audience of qualified prospects (55+, $2.5M+) is roughly <strong style="color:#f5c842">15,000–20,000 people</strong>. At $8–18 CPM, you could reach every one of them for $150–360/month. That is the cheapest qualified lead pool in high-net-worth financial marketing.</p>
+  </div>
+
+  <!-- Competition -->
+  <div class="section">
+    <div class="section-title">Competition</div>
+
+    <div class="tier-card">
+      <div class="tier-label">Tier 1 — Entrenched (hardest to displace)</div>
+      <div class="tier-title">Raymond James, Merrill Lynch, UBS, Morgan Stanley</div>
+      <p style="margin:0;color:#8a9ab0;font-size:14px">Manage most of the $1–10M bracket. Clients are largely complacent. Advisors are salespeople, not thesis investors. Zero ability to articulate a specific AI infrastructure view. Their weakness: they never explain <em>why</em>.</p>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-label">Tier 2 — Boutique RIAs (direct competition)</div>
+      <div class="tier-title">Dozens of Palm Beach Gardens / Boca Raton boutiques</div>
+      <p style="margin:0;color:#8a9ab0;font-size:14px">Small RIAs managing $50M–$500M each, many relocated from CT/NY post-2020. Targeting the same $2–8M investor pool. More sophisticated than the wire houses but still generalist. Can't match a specific documented track record.</p>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-label">Tier 3 — Big Names (aspirational, not direct)</div>
+      <div class="tier-title">Elliott Management (West Palm), Appaloosa, Citadel</div>
+      <p style="margin:0;color:#8a9ab0;font-size:14px">These have moved to South Florida. $5–25M minimums. They've set the benchmark for what "serious money" looks like locally but don't compete for the same LP pool Dean is targeting initially.</p>
+    </div>
+
+    <h3>Dean's Competitive Moat</h3>
+    <div class="moat-grid">
+      <div class="moat-item"><div class="label">Thesis</div>Specific AI infrastructure thesis. Competitors can't articulate this. Most advisors don't even understand it.</div>
+      <div class="moat-item"><div class="label">Local Peer</div>"Palm Beach County neighbor" — not a corporation. Trust conversion is 5–10x higher than an institutional ad.</div>
+      <div class="moat-item"><div class="label">Minimum</div>$1M minimum vs $5–25M for comparable hedge fund names in the area.</div>
+      <div class="moat-item"><div class="label">Transparency</div>Published the 18,000-word thesis publicly for free. Competitors never explain why. Dean shows his entire thinking.</div>
+      <div class="moat-item"><div class="label">Access</div>Personal relationship with every LP. The big wire houses have 300+ clients per advisor.</div>
+      <div class="moat-item"><div class="label">Track Record</div>Documented personal account performance. Most boutiques show blended returns, not one person's actual conviction trades.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Target Profiles -->
+  <div class="section">
+    <div class="section-title">Prospect Profiles — In Order of Priority</div>
+
+    <div class="prospect-card">
+      <div class="prospect-rank">#1 Best Prospect</div>
+      <div class="prospect-title">The Post-COVID Finance Migrant</div>
+      <div class="tier-meta">
+        <span class="tag gold">Age 42–58</span>
+        <span class="tag gold">$5–25M liquid</span>
+        <span class="tag teal">Palm Beach Gardens / Jupiter</span>
+        <span class="tag">ZIP: 33418, 33458</span>
+      </div>
+      <p>Former hedge fund, PE, or finance exec who left NYC/Greenwich for Florida 2020–2023. Their brain never left the game. They intimately understand fund structures, AI, and alpha generation — but their current advisor is too conservative and boring. <strong style="color:#fff">They are actively looking for what Dean has.</strong></p>
+      <ul>
+        <li><strong>Pain point:</strong> Left the industry but miss the action. Current wealth manager puts them in 60/40. They hate it.</li>
+        <li><strong>Why they join:</strong> Recognize the AI infrastructure thesis immediately. Have never seen someone their age with this specific a track record doing something this well-documented.</li>
+        <li><strong>Social proof needed:</strong> The thesis document. The track record. A 30-minute conversation with Dean.</li>
+      </ul>
+    </div>
+
+    <div class="prospect-card teal">
+      <div class="prospect-rank teal">#2 Highest Volume</div>
+      <div class="prospect-title">The Boca Business-Exit Crowd</div>
+      <div class="tier-meta">
+        <span class="tag gold">Age 55–70</span>
+        <span class="tag gold">$3–12M liquid</span>
+        <span class="tag teal">Boca Raton</span>
+        <span class="tag">ZIP: 33431, 33433, 33496, 33498</span>
+      </div>
+      <p>Self-made business owner who sold their company 5–10 years ago. Strong concentration in Boca's Jewish community — exceptionally financially sophisticated, DIY research culture. <strong style="color:#fff">Fundamentally skeptical of generic advisor advice.</strong> Does their own reading.</p>
+      <ul>
+        <li><strong>Pain point:</strong> Advisors put them in index funds. They want something differentiated that they understand and actually believe in.</li>
+        <li><strong>Why they join:</strong> Research-first culture resonates deeply. Dean explains WHY in 18,000 words. No other manager in their life has ever done this.</li>
+        <li><strong>Highest reach:</strong> This is the largest sub-market for the campaign. Boca alone has more qualified prospects than all of Wellington.</li>
+      </ul>
+    </div>
+
+    <div class="prospect-card white">
+      <div class="prospect-rank white">#3 Highest Trust Conversion</div>
+      <div class="prospect-title">The Wellington Community</div>
+      <div class="tier-meta">
+        <span class="tag gold">Age 48–65</span>
+        <span class="tag gold">$2–8M liquid</span>
+        <span class="tag teal">Wellington</span>
+        <span class="tag">ZIP: 33414</span>
+      </div>
+      <p>Dean's literal neighbors. Equestrian community — tight-knit, trust-based, and deeply connected. <strong style="color:#fff">One Wellington investor typically generates 5 organic introductions.</strong> The referral network effect here is unmatched.</p>
+      <ul>
+        <li><strong>Best for:</strong> First 5–10 LPs. Community closes are fast when trust is established.</li>
+        <li><strong>Event strategy:</strong> A private dinner with 10 Wellington community members = potential for 3–5 LPs and 20 referrals.</li>
+      </ul>
+    </div>
+
+    <div class="prospect-card" style="border-left-color: #8a9ab0;">
+      <div class="prospect-rank" style="color:#8a9ab0">#4 High Value / Harder to Reach</div>
+      <div class="prospect-title">Palm Beach Island — Old & New Money</div>
+      <div class="tier-meta">
+        <span class="tag gold">Age 55–75</span>
+        <span class="tag gold">$10M+</span>
+        <span class="tag teal">Palm Beach Island</span>
+        <span class="tag">ZIP: 33480</span>
+      </div>
+      <p>Ads alone won't work here. These people operate through networks and warm introductions. The path: one Wellington or Boca LP introduces Dean to someone on the island. The "neighbor" credibility bridges the gap.</p>
+    </div>
+
+    <div class="prospect-card" style="border-left-color: #4a90c4;">
+      <div class="prospect-rank" style="color:#4a90c4">#5 Good Volume</div>
+      <div class="prospect-title">South Florida Medical Professionals</div>
+      <div class="tier-meta">
+        <span class="tag gold">Age 55–68</span>
+        <span class="tag gold">$2–5M liquid</span>
+        <span class="tag teal">Boca / Boynton / Delray</span>
+      </div>
+      <p>Doctors and specialists who've accumulated wealth over careers. Understand AI because medicine is transforming from it — they're seeing it firsthand in their practices. Respond to research-backed, well-documented content.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- AdWords Spec -->
+  <div class="section">
+    <div class="section-title">Google AdWords Targeting Spec</div>
+
+    <h2>Ages</h2>
+    <div class="target-row">
+      <div class="target-label">Primary</div>
+      <div class="target-value"><strong>55–64</strong> — Sweet spot. Largest accumulated wealth, still actively engaged in managing it.</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">Secondary</div>
+      <div class="target-value"><strong>45–54</strong> — The post-COVID finance migrants. Highly qualified, recognize the thesis immediately.</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">Tertiary</div>
+      <div class="target-value"><strong>65–70</strong> — Still active investors. Cap here — YouTube Shorts engagement drops sharply above 70.</div>
+    </div>
+
+    <h2>Zip Codes — Bid Up 30–50%</h2>
+    <div class="zip-grid">
+      <div class="zip-item priority">
+        <div class="zip-code">33480</div>
+        <div class="zip-desc">Palm Beach Island — ultra HNW</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33418</div>
+        <div class="zip-desc">Palm Beach Gardens — finance migrants</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33458</div>
+        <div class="zip-desc">Jupiter — same profile as Gardens</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33431</div>
+        <div class="zip-desc">Boca Raton central</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33433</div>
+        <div class="zip-desc">Boca West / Polo Club area</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33496</div>
+        <div class="zip-desc">Boca NW — business exits</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33498</div>
+        <div class="zip-desc">Boca W — Woodfield area</div>
+      </div>
+      <div class="zip-item priority">
+        <div class="zip-code">33414</div>
+        <div class="zip-desc">Wellington — Dean's neighborhood</div>
+      </div>
+    </div>
+
+    <h2>Zip Codes — Standard Bid</h2>
+    <div class="zip-grid">
+      <div class="zip-item">
+        <div class="zip-code teal">33401</div>
+        <div class="zip-desc">West Palm Beach</div>
+      </div>
+      <div class="zip-item">
+        <div class="zip-code teal">33405</div>
+        <div class="zip-desc">West Palm Beach south</div>
+      </div>
+      <div class="zip-item">
+        <div class="zip-code teal">33460</div>
+        <div class="zip-desc">Lake Worth</div>
+      </div>
+      <div class="zip-item">
+        <div class="zip-code teal">33436</div>
+        <div class="zip-desc">Boynton Beach west</div>
+      </div>
+      <div class="zip-item">
+        <div class="zip-code teal">33445</div>
+        <div class="zip-desc">Delray Beach west</div>
+      </div>
+    </div>
+
+    <h2>Interest & Audience Targeting</h2>
+    <div class="target-row">
+      <div class="target-label">In-Market</div>
+      <div class="target-value">"Investment products" · "Hedge funds & alternative investments"</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">Affinity</div>
+      <div class="target-value">"Financial news & general investing" · "Avid investors"</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label" style="color:#f5c842">Life Events ⭐</div>
+      <div class="target-value"><strong style="color:#f5c842">"Recently retired"</strong> — Most powerful signal available. Catches people the moment they start thinking about what to do with their money.</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">Custom Intent</div>
+      <div class="target-value">Build manually from: "hedge fund", "alternative investments", "AI stocks", "private equity", "family office", "limited partner", "accredited investor"</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">Content Placement</div>
+      <div class="target-value">CNBC, Bloomberg, Reuters YouTube channels · Local Palm Beach / South FL news · Golf, real estate, wealth lifestyle channels</div>
+    </div>
+    <div class="target-row" style="border-color: #3a1a1a;">
+      <div class="target-label" style="color:#e05050">Exclusions</div>
+      <div class="target-value">Under 45 · Household income below $100k · Outside Palm Beach County</div>
+    </div>
+
+    <h2>Budget Guidance</h2>
+    <div class="target-row">
+      <div class="target-label">Now–May</div>
+      <div class="target-value">Lower budget ($500–1,500/mo). Test creative. End of season — snowbirds leaving.</div>
+    </div>
+    <div class="target-row">
+      <div class="target-label" style="color:#f5c842">October ⭐</div>
+      <div class="target-value"><strong style="color:#f5c842">Scale to $3,000–8,000/mo.</strong> Snowbirds arrive. Season opens. Fresh money, fresh mindset, maximum receptivity.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- The Asymmetry -->
+  <div class="highlight-box">
+    <div class="title">The Asymmetry Nobody Talks About</div>
+    <p style="color:#a8d890;margin-bottom:10px">Google knows who has money. Not from what they say — from what they do: purchase history, travel behavior, real estate search activity, luxury brand engagement, financial news consumption patterns.</p>
+    <p style="color:#a8d890;margin-bottom:10px">When you layer the zip code + age + interest stack above, you're not reaching all 1.58M people in Palm Beach County. You're reaching the <strong style="color:#ffffff">12,000–20,000</strong> who fit the exact profile.</p>
+    <p style="color:#a8d890;margin-bottom:0">At typical YouTube Shorts CPMs for this targeting ($8–18 per 1,000 views), you could reach every single one of them for <strong style="color:#ffffff">$150–360 per month</strong>. That is the cheapest qualified lead pool in high-net-worth financial marketing. Any single LP from this pool is worth more than a year's ad spend.</p>
+  </div>
+
+  <!-- Seasonal Note -->
+  <div class="section">
+    <div class="section-title">Seasonal Strategy</div>
+    <p>Palm Beach County has a defined "season" — snowbirds arrive October/November and most leave by May 1. You are currently at the tail end of season.</p>
+    <ul>
+      <li><strong>Now through May:</strong> Target full-time residents and late-departing snowbirds. Lower spend, test all 10 ad variants, identify top 3 performers.</li>
+      <li><strong>June–September:</strong> Maintain minimal spend. Optimize. Build Dean's content library. Set up event infrastructure.</li>
+      <li><strong>October launch:</strong> Full campaign. Snowbirds arrive fresh, wallets open, looking for new ideas for the new "season." This is when you scale.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  Agentic Capital — Internal Strategy Brief · Palm Beach County Campaign · April 2026<br>
+  For informational and planning purposes only.
+</div>
+
+</body>
+</html>

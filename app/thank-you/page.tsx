@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 //
 // Once filled in, this page will fire a conversion event every time
 // someone lands here after submitting the squeeze page form.
-const GOOGLE_ADS_ID = "AW-REPLACE_ME";         // ← replace
-const CONVERSION_LABEL = "REPLACE_ME";          // ← replace
+const GOOGLE_ADS_ID = "AW-17815418254";
+const CONVERSION_LABEL = "aAo6COCCq6QcEI7rhq9C";
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function ThankYouPage() {

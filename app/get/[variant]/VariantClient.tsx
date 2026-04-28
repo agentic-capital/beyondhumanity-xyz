@@ -135,12 +135,13 @@ export default function VariantClient({ variant }: { variant: Variant }) {
     width: "100%",
     border: `1px solid ${BORDER}`,
     borderRadius: 4,
-    padding: "12px 14px",
+    padding: "14px 14px",
     fontSize: 16,
     color: "#fff",
     background: NAVY_2,
     outline: "none",
     boxSizing: "border-box",
+    minHeight: 52,
   };
 
   const labelStyle: React.CSSProperties = {
@@ -173,47 +174,82 @@ export default function VariantClient({ variant }: { variant: Variant }) {
       </div>
 
       {/* Top announcement banner */}
-      <div style={{ background: GOLD, color: NAVY, textAlign: "center", padding: "10px 20px", fontSize: 13, fontWeight: 700, letterSpacing: "0.06em", position: "relative", zIndex: 10 }}>
-        🌴 Palm Beach County &nbsp;·&nbsp; Private Offer &nbsp;·&nbsp; Limited Time
+      <div style={{ background: GOLD, color: NAVY, textAlign: "center", padding: "8px 12px", position: "relative", zIndex: 10 }}>
+        <span className="bh-banner-text">🌴 Palm Beach County &nbsp;·&nbsp; Private Offer &nbsp;·&nbsp; Limited Time</span>
       </div>
+
       <style>{`
         * { box-sizing: border-box; }
+
+        /* Mobile-first banner text */
+        .bh-banner-text {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          display: block;
+        }
+        @media (min-width: 480px) {
+          .bh-banner-text { font-size: 13px; }
+        }
+
+        /* Mobile-first page wrapper */
         .bh-wrap {
-          max-width: 560px;
+          max-width: 540px;
           margin: 0 auto;
-          padding: 28px 20px 0;
+          padding: 16px 12px 0;
+        }
+
+        /* Single column stack — mobile is the only layout that matters */
+        .bh-page-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        /* Headline section */
+        .bh-headline { order: 1; margin-bottom: 4px; }
+
+        /* Form column — comes right after headline */
+        .bh-form-col { order: 2; margin-top: 16px; }
+
+        /* Content (bullets, sub text) — below form on mobile */
+        .bh-content-below { order: 3; margin-top: 24px; }
+
+        /* Bullets: hidden on mobile, shown on desktop */
+        .bh-bullets {
+          display: none;
         }
         @media (min-width: 768px) {
-          .bh-wrap {
-            max-width: 1080px;
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 56px;
-            align-items: start;
-            padding: 56px 32px;
+          .bh-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
           }
         }
-        .bh-content { order: 1; }
-        .bh-form-col { order: 2; }
-        .bh-bullets { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+
+        /* CTA button */
         .bh-btn {
           background: ${GOLD};
           color: ${NAVY};
           border: none;
           border-radius: 6px;
-          padding: 17px 24px;
-          font-size: 17px;
+          padding: 18px 24px;
+          font-size: 18px;
           font-weight: 800;
           cursor: pointer;
           width: 100%;
+          min-height: 56px;
           letter-spacing: -0.01em;
           transition: background 0.15s, transform 0.05s;
         }
         .bh-btn:hover  { background: #ffd45a; }
         .bh-btn:active { transform: translateY(1px); }
         .bh-btn:disabled { opacity: 0.7; cursor: default; }
+
         input::placeholder { color: #4a5a73; }
-        /* Style the Google Places autocomplete dropdown to match dark theme */
+
+        /* Google Places autocomplete dropdown — dark theme */
         .pac-container {
           background: #0a1828 !important;
           border: 1px solid #1e2c44 !important;
@@ -246,197 +282,207 @@ export default function VariantClient({ variant }: { variant: Variant }) {
       `}</style>
 
       <div className="bh-wrap" style={{ position: "relative", zIndex: 1 }}>
+        <div className="bh-page-stack">
 
-        {/* CONTENT */}
-        <div className="bh-content">
-          {variant.preheadline && (
-            <p style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: "0.18em",
-              textTransform: "uppercase", color: GOLD, margin: "0 0 14px",
-              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-            }}>
-              {variant.preheadline}
-            </p>
-          )}
-
-          <h1 style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: "clamp(28px, 6.4vw, 48px)",
-            fontWeight: 700, lineHeight: 1.12,
-            color: "#fff", margin: "0 0 20px",
-            letterSpacing: "-0.02em",
-          }}>
-            {variant.hero}
-          </h1>
-
-          {variant.bigNumber && (
-            <div style={{ margin: "8px 0 24px" }}>
-              <div style={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontSize: "clamp(64px, 14vw, 120px)", fontWeight: 700,
-                color: GOLD, lineHeight: 1, letterSpacing: "-0.03em",
+          {/* HEADLINE — above form */}
+          <div className="bh-headline">
+            {variant.preheadline && (
+              <p style={{
+                fontSize: 11, fontWeight: 700, letterSpacing: "0.18em",
+                textTransform: "uppercase", color: GOLD, margin: "0 0 10px",
+                fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               }}>
-                {variant.bigNumber}
-              </div>
-              <div style={{ height: 4, background: TEAL, width: 80, marginTop: 12 }} />
-              <p style={{ fontSize: 14, color: MUTED, margin: "12px 0 0", lineHeight: 1.5 }}>
-                {variant.bigNumberLabel}
+                {variant.preheadline}
               </p>
-            </div>
-          )}
+            )}
 
-          {variant.timeline && (
-            <div style={{ margin: "14px 0 24px", border: `1px solid ${BORDER}`, borderRadius: 8, padding: "16px 20px", background: NAVY_2 }}>
-              {variant.timeline.map((t, i) => (
-                <div key={t.era} style={{
-                  display: "flex", justifyContent: "space-between",
-                  padding: "8px 0",
-                  borderBottom: i < variant.timeline!.length - 1 ? `1px solid ${BORDER}` : "none",
+            <h1 style={{
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontSize: "clamp(26px, 7vw, 48px)",
+              fontWeight: 700, lineHeight: 1.12,
+              color: "#fff", margin: "0 0 10px",
+              letterSpacing: "-0.02em",
+            }}>
+              {variant.hero}
+            </h1>
+
+            {variant.bigNumber && (
+              <div style={{ margin: "8px 0 16px" }}>
+                <div style={{
+                  fontFamily: "Georgia, 'Times New Roman', serif",
+                  fontSize: "clamp(56px, 14vw, 120px)", fontWeight: 700,
+                  color: GOLD, lineHeight: 1, letterSpacing: "-0.03em",
                 }}>
-                  <span style={{
-                    fontSize: 14, fontWeight: 600,
-                    color: i === variant.timeline!.length - 1 ? GOLD : "#fff",
-                  }}>{t.era}</span>
-                  <span style={{
-                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    fontSize: 13,
-                    color: i === variant.timeline!.length - 1 ? GOLD : MUTED,
-                    fontWeight: i === variant.timeline!.length - 1 ? 700 : 400,
-                  }}>{t.years}</span>
+                  {variant.bigNumber}
                 </div>
-              ))}
-            </div>
-          )}
+                <div style={{ height: 4, background: TEAL, width: 80, marginTop: 8 }} />
+                <p style={{ fontSize: 14, color: MUTED, margin: "10px 0 0", lineHeight: 1.5 }}>
+                  {variant.bigNumberLabel}
+                </p>
+              </div>
+            )}
 
-          <p style={{ fontSize: 17, color: "#cdd5e1", lineHeight: 1.6, margin: "0 0 8px" }}>
-            {variant.sub}
-          </p>
+            {variant.timeline && (
+              <div style={{ margin: "10px 0 14px", border: `1px solid ${BORDER}`, borderRadius: 8, padding: "14px 16px", background: NAVY_2 }}>
+                {variant.timeline.map((t, i) => (
+                  <div key={t.era} style={{
+                    display: "flex", justifyContent: "space-between",
+                    padding: "7px 0",
+                    borderBottom: i < variant.timeline!.length - 1 ? `1px solid ${BORDER}` : "none",
+                  }}>
+                    <span style={{
+                      fontSize: 14, fontWeight: 600,
+                      color: i === variant.timeline!.length - 1 ? GOLD : "#fff",
+                    }}>{t.era}</span>
+                    <span style={{
+                      fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                      fontSize: 13,
+                      color: i === variant.timeline!.length - 1 ? GOLD : MUTED,
+                      fontWeight: i === variant.timeline!.length - 1 ? 700 : 400,
+                    }}>{t.years}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
-          {variant.bullets && (
-            <div className="bh-bullets">
-              {variant.bullets.map((b) => (
-                <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                  <span style={{ color: TEAL, fontSize: 18, lineHeight: 1.3, flexShrink: 0, fontWeight: 700 }}>—</span>
-                  <span style={{ color: "#cdd5e1", fontSize: 15, lineHeight: 1.55 }}>{b}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <p style={{ fontSize: 12, color: MUTED, margin: "28px 0 0", fontStyle: "italic", lineHeight: 1.6 }}>
-            18,000 words · 7 chapters · No fund pitch · No email required to read it · Free
-          </p>
-        </div>
-
-        {/* FORM COLUMN */}
-        <div className="bh-form-col">
-          {/* Scarcity badge */}
-          <div style={{ textAlign: "center", margin: "0 0 12px" }}>
-            <span style={{
-              display: "inline-block",
-              border: `1px solid ${GOLD}`,
-              color: GOLD,
-              background: NAVY,
-              borderRadius: 999,
-              padding: "5px 14px",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.03em",
-            }}>🌴 Palm Beach County Exclusive — Limited copies remaining</span>
-          </div>
-
-          <div style={{ textAlign: "center", margin: "0 0 16px" }}>
-            <img
-              src="/book-cover.png"
-              alt="Beyond Humanity"
-              style={{
-                width: 220, height: "auto", borderRadius: 4,
-                boxShadow: "0 28px 64px rgba(0,0,0,0.55), 0 12px 24px rgba(245,200,66,0.10)",
-                display: "inline-block",
-              }}
-            />
-          </div>
-
-          <div style={{
-            background: NAVY_2,
-            border: `1px solid ${BORDER}`,
-            borderRadius: 12, padding: "22px 22px 24px",
-            boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
-          }}>
-            <h2 style={{ fontSize: 19, fontWeight: 700, color: "#fff", margin: "0 0 6px", lineHeight: 1.25 }}>
-              Claim your Palm Beach copy
-            </h2>
-            <p style={{ fontSize: 13, color: MUTED, margin: "0 0 16px", lineHeight: 1.5 }}>
-              Dean personally signs and ships each copy to Palm Beach County neighbors. Free. No obligation.
+            <p style={{ fontSize: 16, color: "#cdd5e1", lineHeight: 1.6, margin: "0 0 4px" }}>
+              {variant.sub}
             </p>
-
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <div>
-                <label style={labelStyle}>First name</label>
-                <input type="text" required value={firstName} onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="Your first name" style={inputStyle} />
-              </div>
-              <div>
-                <label style={labelStyle}>Email</label>
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com" style={inputStyle} />
-              </div>
-              <div>
-                <label style={labelStyle}>Phone <span style={{ color: "#4a5a73", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
-                <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+1 (555) 000-0000" style={inputStyle} />
-              </div>
-              <div>
-                <label style={labelStyle}>Mailing address</label>
-                <input
-                  ref={addressInputRef}
-                  type="text"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Start typing your address…"
-                  style={inputStyle}
-                  autoComplete="off"
-                />
-              </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 86px", gap: 8 }}>
-                <div>
-                  <label style={labelStyle}>City</label>
-                  <input type="text" value={city} onChange={(e) => setCity(e.target.value)}
-                    placeholder="Palm Beach" style={inputStyle} />
-                </div>
-                <div>
-                  <label style={labelStyle}>State</label>
-                  <input type="text" value={stateField} onChange={(e) => setStateField(e.target.value)}
-                    placeholder="FL" maxLength={2} style={{ ...inputStyle, textTransform: "uppercase" }} />
-                </div>
-                <div>
-                  <label style={labelStyle}>ZIP</label>
-                  <input type="text" value={zip} onChange={(e) => setZip(e.target.value)}
-                    placeholder="33480" style={inputStyle} />
-                </div>
-              </div>
-
-              {status === "error" && (
-                <p style={{ color: "#fca5a5", fontSize: 13, margin: 0 }}>Something went wrong. Please try again.</p>
-              )}
-
-              <p style={{ fontSize: 12, color: MUTED, fontStyle: "italic", margin: "4px 0 2px", lineHeight: 1.6 }}>
-                &ldquo;I&rsquo;m giving these away because I want feedback from other serious investors here in Palm Beach County. That&rsquo;s it.&rdquo;
-              </p>
-
-              <button type="submit" disabled={status === "loading"} className="bh-btn" style={{ marginTop: 6 }}>
-                {status === "loading" ? "Sending…" : variant.cta}
-              </button>
-
-              <p style={{ fontSize: 12, color: MUTED, textAlign: "center", margin: "4px 0 0" }}>
-                Palm Beach County only &nbsp;·&nbsp; Limited print run &nbsp;·&nbsp; Ships free
-              </p>
-            </form>
           </div>
+
+          {/* FORM COLUMN — immediately after headline */}
+          <div className="bh-form-col">
+            {/* Scarcity badge */}
+            <div style={{ textAlign: "center", margin: "0 0 10px" }}>
+              <span style={{
+                display: "inline-block",
+                border: `1px solid ${GOLD}`,
+                color: GOLD,
+                background: NAVY,
+                borderRadius: 999,
+                padding: "5px 12px",
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "0.03em",
+              }}>🌴 Palm Beach County Exclusive — Limited copies remaining</span>
+            </div>
+
+            <div style={{ textAlign: "center", margin: "0 0 14px" }}>
+              <img
+                src="/book-cover.png"
+                alt="Beyond Humanity"
+                style={{
+                  width: 150,
+                  maxWidth: "60vw",
+                  height: "auto",
+                  borderRadius: 4,
+                  boxShadow: "0 20px 48px rgba(0,0,0,0.55), 0 8px 20px rgba(245,200,66,0.10)",
+                  display: "inline-block",
+                }}
+              />
+            </div>
+
+            <div style={{
+              background: NAVY_2,
+              border: `1px solid ${BORDER}`,
+              borderRadius: 12, padding: "20px 18px 22px",
+              boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
+            }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, color: "#fff", margin: "0 0 6px", lineHeight: 1.25 }}>
+                Claim your Palm Beach copy
+              </h2>
+              <p style={{ fontSize: 13, color: MUTED, margin: "0 0 14px", lineHeight: 1.5 }}>
+                Dean personally signs and ships each copy to Palm Beach County neighbors. Free. No obligation.
+              </p>
+
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <div>
+                  <label style={labelStyle}>First name</label>
+                  <input type="text" required value={firstName} onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="Your first name" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Email</label>
+                  <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Phone <span style={{ color: "#4a5a73", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+1 (555) 000-0000" style={inputStyle} />
+                </div>
+                <div>
+                  <label style={labelStyle}>Mailing address</label>
+                  <input
+                    ref={addressInputRef}
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Start typing your address…"
+                    style={inputStyle}
+                    autoComplete="off"
+                  />
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 60px 86px", gap: 8 }}>
+                  <div>
+                    <label style={labelStyle}>City</label>
+                    <input type="text" value={city} onChange={(e) => setCity(e.target.value)}
+                      placeholder="Palm Beach" style={inputStyle} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>State</label>
+                    <input type="text" value={stateField} onChange={(e) => setStateField(e.target.value)}
+                      placeholder="FL" maxLength={2} style={{ ...inputStyle, textTransform: "uppercase" }} />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>ZIP</label>
+                    <input type="text" value={zip} onChange={(e) => setZip(e.target.value)}
+                      placeholder="33480" style={inputStyle} />
+                  </div>
+                </div>
+
+                {status === "error" && (
+                  <p style={{ color: "#fca5a5", fontSize: 13, margin: 0 }}>Something went wrong. Please try again.</p>
+                )}
+
+                <p style={{ fontSize: 12, color: MUTED, fontStyle: "italic", margin: "4px 0 2px", lineHeight: 1.6 }}>
+                  &ldquo;I&rsquo;m giving these away because I want feedback from other serious investors here in Palm Beach County. That&rsquo;s it.&rdquo;
+                </p>
+
+                <button type="submit" disabled={status === "loading"} className="bh-btn" style={{ marginTop: 6 }}>
+                  {status === "loading" ? "Sending…" : variant.cta}
+                </button>
+
+                <p style={{ fontSize: 12, color: MUTED, textAlign: "center", margin: "4px 0 0" }}>
+                  Palm Beach County only &nbsp;·&nbsp; Limited print run &nbsp;·&nbsp; Ships free
+                </p>
+              </form>
+            </div>
+
+            {/* Why it's free — shown below form on mobile */}
+            <p style={{ fontSize: 12, color: MUTED, margin: "16px 0 0", fontStyle: "italic", lineHeight: 1.6, textAlign: "center" }}>
+              18,000 words · 7 chapters · No fund pitch · No email required to read it · Free
+            </p>
+          </div>
+
+          {/* CONTENT BELOW — bullets visible only on desktop via CSS */}
+          {variant.bullets && (
+            <div className="bh-content-below">
+              <div className="bh-bullets">
+                {variant.bullets.map((b) => (
+                  <div key={b} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                    <span style={{ color: TEAL, fontSize: 18, lineHeight: 1.3, flexShrink: 0, fontWeight: 700 }}>—</span>
+                    <span style={{ color: "#cdd5e1", fontSize: 15, lineHeight: 1.55 }}>{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
 
-      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 20px", textAlign: "center", marginTop: 48, position: "relative", zIndex: 1 }}>
+      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 20px", textAlign: "center", marginTop: 40, position: "relative", zIndex: 1 }}>
         <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.7, maxWidth: 620, margin: "0 auto" }}>
           For informational and educational purposes only. Not investment advice.
           <br />

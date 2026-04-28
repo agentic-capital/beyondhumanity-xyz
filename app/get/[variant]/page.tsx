@@ -2,8 +2,11 @@ import { notFound } from "next/navigation";
 import VariantClient from "./VariantClient";
 
 type VariantKey =
+  | "census" | "book" | "broken" | "numbers" | "sequel"
+  | "goldrush" | "foryou" | "gap" | "insider" | "hybrid"
+  // legacy slugs kept alive so old URLs don't 404
   | "pattern" | "data" | "serious" | "window" | "picks"
-  | "100" | "investor" | "agents" | "layer" | "book";
+  | "100" | "investor" | "agents" | "layer";
 
 type Variant = {
   hero: string;
@@ -17,6 +20,110 @@ type Variant = {
 };
 
 const VARIANTS: Record<VariantKey, Variant> = {
+  // ── NEW v2 VARIANTS (matched to video scripts) ──────────────────────────────
+  census: {
+    preheadline: "The fastest-growing population on Earth",
+    hero: "The fastest-growing population on Earth isn't counted in any census.",
+    sub: "It doesn't need food, sleep, or a raise. It's growing 20% per month. Dean Gallagher, Palm Beach County, Florida, wrote 18,000 words on what this means for investors.",
+    bullets: [
+      "Why the agent economy is a population story, not a technology story",
+      "The economic models that break when labor stops being human-bounded",
+      "Where the infrastructure serving this population is being built",
+    ],
+    cta: "Get the free research →",
+  },
+  broken: {
+    preheadline: "The assumption that broke in 2024",
+    hero: "For all of recorded history, one assumption held. It broke in 2024.",
+    sub: "Every economic forecast, wage model, and productivity estimate was built on the assumption that the workforce grows at the rate of human births. That stopped being true. Dean Gallagher wrote 18,000 words on what replaces those models.",
+    bullets: [
+      "The hidden assumption in every economic model ever written",
+      "What it means when labor stops being a population-bounded variable",
+      "Where the repricing will be largest — and what's still mis-priced",
+    ],
+    cta: "Read the thesis (free) →",
+  },
+  numbers: {
+    preheadline: "Three numbers most investors don't know",
+    hero: "350 million. 2 billion. 100 billion.",
+    sub: "350M AI agents active today — growing 20%/month. 2B by 2027, more than the global workforce. 100B by 2030, more than every human who ever lived. The market has priced the build. It hasn't priced the output.",
+    bigNumber: "100B",
+    bigNumberLabel: "Projected AI agents by 2030 — more than all humans who ever lived",
+    bullets: [
+      "Why these numbers aren't a forecast — they're already in production",
+      "What 'pricing the build but not the output' means for capital allocation",
+      "Which infrastructure layers serve the output economy specifically",
+    ],
+    cta: "Get the free research →",
+  },
+  sequel: {
+    preheadline: "The investor's follow-up to the most important AI thesis",
+    hero: "A researcher published a 165-page AI thesis. Every prediction came true.",
+    sub: "Almost nobody read it. Everything he predicted has happened. This book is the investor's follow-up — written from inside the trade, not from the sidelines, by a Palm Beach County investor who started researching in January 2023.",
+    bullets: [
+      "What the original thesis predicted — and what's happened since",
+      "The economic story the technology thesis missed",
+      "Where an investor who was already positioned sees the next move",
+    ],
+    cta: "Read the follow-up (free) →",
+  },
+  goldrush: {
+    preheadline: "Picks & shovels — the AI gold rush",
+    hero: "The miners lost. Levi Strauss won.",
+    sub: "Every gold rush has the same shape. The people chasing the gold lose. The people selling the picks and shovels compound. AI is the gold rush. Dean Gallagher, Palm Beach County, Florida, found the picks and shovels. It's free.",
+    bullets: [
+      "The Gold Rush pattern — and which layer of AI maps to Levi Strauss",
+      "Why the apps are the miners and the infrastructure is the general store",
+      "The five chokepoints every AI dollar passes through",
+    ],
+    cta: "Read the picks & shovels thesis →",
+  },
+  foryou: {
+    preheadline: "Written for investors with 20+ years of experience",
+    hero: "If you've managed your own money for 20 or 30 years, you already know the pattern.",
+    sub: "Internet. Infrastructure won. Mobile. Infrastructure won. Cloud. Infrastructure won. AI is the same shape. Dean Gallagher, Palm Beach County, Florida, wrote 18,000 words on where the infrastructure is this cycle. For investors who've seen this before.",
+    bullets: [
+      "The pattern from three prior cycles — in detail",
+      "Why AI infrastructure is structurally different from prior cycles",
+      "The specific layer that maps to Cisco in 1998, Qualcomm in 2009, AWS in 2012",
+    ],
+    cta: "Get the free thesis →",
+  },
+  gap: {
+    preheadline: "What the market has priced — and what it hasn't",
+    hero: "The market has priced the AI buildout. It hasn't priced the output.",
+    sub: "NVIDIA. Cloud infrastructure. Data centers. All priced in. What isn't priced: when hundreds of millions of AI agents start generating real economic output, every model that priced the build has to be rebuilt. Dean Gallagher wrote the thesis on what that reprices.",
+    bullets: [
+      "Exactly what 'pricing the buildout' means — and what it excludes",
+      "The five categories of economic output that agents generate at scale",
+      "Which infrastructure layers serve the output economy, not just the build",
+    ],
+    cta: "Read the thesis (free) →",
+  },
+  insider: {
+    preheadline: "Written from inside the trade, not from the sidelines",
+    hero: "I'm not a financial advisor. I'm an investor who started researching this in January 2023.",
+    sub: "18 months before it became a mainstream conversation. I wrote it all down — not as a prediction, as a report from inside the thesis. 18,000 words. Seven chapters. Free PDF instantly. Printed copy shipped to your door.",
+    bullets: [
+      "Why January 2023 mattered — what was happening in the infrastructure that most missed",
+      "The difference between researching AI from the sidelines and being positioned in it",
+      "The thesis as written by someone who has skin in the game",
+    ],
+    cta: "Read the inside report (free) →",
+  },
+  hybrid: {
+    preheadline: "The wrong layer of AI — and the right one",
+    hero: "Most investors are chasing the wrong layer of AI.",
+    sub: "Internet didn't compound in the browsers. It compounded in the pipes. Mobile didn't compound in the apps. It compounded in the chips. AI is no different. But this time, the infrastructure isn't just for apps — it's for a new workforce. 350 million strong. Growing 20% per month.",
+    bullets: [
+      "The pipes/chips/rails pattern across three prior cycles",
+      "Why AI infrastructure is serving a workforce, not just software",
+      "The specific infrastructure layer that maps to each prior-cycle compounder",
+    ],
+    cta: "Get the free research →",
+  },
+
+  // ── LEGACY VARIANTS (kept so old URLs don't break) ──────────────────────────
   pattern: {
     preheadline: "Pattern recognition across three cycles",
     hero: "I've seen this play out three times.",

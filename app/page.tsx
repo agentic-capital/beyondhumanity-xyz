@@ -12,44 +12,6 @@ export default function HomePage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
-  const addressRef = useRef<HTMLInputElement>(null);
-  useEffect(() => {
-    // Load Google Places script
-    const scriptId = "google-places-script";
-    if (document.getElementById(scriptId)) return;
-    const script = document.createElement("script");
-    script.id = scriptId;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCTCF7dQIk4B-BxtjVU0qIcPbKJCuIKBSg&libraries=places`;
-    script.async = true;
-script.onload = () => initAutocomplete();
-    document.head.appendChild(script);
-  }, []);
-
-  function initAutocomplete() {
-    if (!addressRef.current || !(window as unknown as Record<string,unknown>).google) return;
-    const g = (window as unknown as { google: { maps: { places: { Autocomplete: new (el: HTMLElement, opts: object) => { addListener: (e: string, cb: () => void) => void; getPlace: () => { address_components?: Array<{ long_name: string; short_name: string; types: string[] }>, formatted_address?: string } } } } } }).google;
-    const autocomplete = new g.maps.places.Autocomplete(addressRef.current, {
-      types: ["address"],
-      componentRestrictions: { country: "us" },
-    });
-    autocomplete.addListener("place_changed", () => {
-      const place = autocomplete.getPlace();
-      if (!place.address_components) return;
-      let streetNumber = "", route = "", locality = "", adminArea = "", postalCode = "";
-      for (const c of place.address_components) {
-        if (c.types.includes("street_number")) streetNumber = c.long_name;
-        if (c.types.includes("route")) route = c.long_name;
-        if (c.types.includes("locality")) locality = c.long_name;
-        if (c.types.includes("administrative_area_level_1")) adminArea = c.short_name;
-        if (c.types.includes("postal_code")) postalCode = c.long_name;
-      }
-      setAddress(`${streetNumber} ${route}`.trim());
-      setCity(locality);
-      setState(adminArea);
-      setZip(postalCode);
-    });
-  }
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");

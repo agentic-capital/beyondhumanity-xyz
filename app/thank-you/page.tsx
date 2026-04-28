@@ -80,7 +80,7 @@ export default function ThankYouPage() {
                 Check your inbox
               </p>
               <p style={{ fontSize: 13, color: "#374151", margin: 0, lineHeight: 1.55 }}>
-                Your digital copy of <em>Beyond Humanity</em> just landed. Open it — the email is from Beyond Humanity Research.
+                Check your email — a confirmation just landed from Beyond Humanity Research.
               </p>
             </div>
             <div className="ty-card" style={{ background: "#f8fafc", border: "1px solid #e5e7eb", borderRadius: 10, padding: 20 }}>

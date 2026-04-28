@@ -354,7 +354,7 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                 Get the free essay
               </h2>
               <p style={{ fontSize: 13, color: MUTED, margin: "0 0 14px", lineHeight: 1.5 }}>
-                Free PDF instantly. Printed copy shipped to your door. No sales calls.
+                Printed copy shipped to your door. Completely free. No sales calls.
               </p>
 
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>

@@ -374,7 +374,7 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                     placeholder="+1 (555) 000-0000" style={inputStyle} />
                 </div>
                 <div>
-                  <label style={labelStyle}>Mailing address</label>
+                  <label style={labelStyle}>Mailing address <span style={{ color: "#4a5a73", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>(to ship your copy)</span></label>
                   <input
                     ref={addressInputRef}
                     type="text"
@@ -389,7 +389,7 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                   <div>
                     <label style={labelStyle}>City</label>
                     <input type="text" value={city} onChange={(e) => setCity(e.target.value)}
-                      placeholder="Palm Beach" style={inputStyle} />
+                      placeholder="Your city" style={inputStyle} />
                   </div>
                   <div>
                     <label style={labelStyle}>State</label>
@@ -412,14 +412,13 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                 </button>
 
                 <p style={{ fontSize: 12, color: MUTED, textAlign: "center", margin: "4px 0 0" }}>
-                  100 copies. Free. No shipping cost.
+                  Limited to 100 printed copies · Free · Ships within 5 business days
                 </p>
               </form>
             </div>
 
-            {/* Why it's free — shown below form on mobile */}
-            <p style={{ fontSize: 12, color: MUTED, margin: "16px 0 0", fontStyle: "italic", lineHeight: 1.6, textAlign: "center" }}>
-              18,000 words · 7 chapters · No fund pitch · No email required to read it · Free
+            <p style={{ fontSize: 12, color: MUTED, margin: "16px 0 0", lineHeight: 1.6, textAlign: "center" }}>
+              Dean reviews every request personally. No sales calls. No obligation.
             </p>
           </div>
 
@@ -444,7 +443,7 @@ export default function VariantClient({ variant }: { variant: Variant }) {
         <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.7, maxWidth: 620, margin: "0 auto" }}>
           For informational and educational purposes only. Not investment advice.
           <br />
-          Beyond Humanity Research · Dean Gallagher · Palm Beach County, Florida
+          Beyond Humanity Research · Dean Gallagher · beyondhumanity.xyz
         </p>
       </footer>
     </main>

@@ -127,7 +127,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   pattern: {
     preheadline: "Pattern recognition across three cycles",
     hero: "I've seen this play out three times.",
-    sub: "Internet. Mobile. Cloud. Each cycle, the infrastructure layer compounded while the apps chased users. Dean Gallagher, Palm Beach County, Florida, wrote the AI version of this thesis.",
+    sub: "Internet. Mobile. Cloud. Each cycle, the infrastructure layer compounded while the apps chased users. Dean Gallagher wrote the AI version of this thesis.",
     bullets: [
       "The exact pattern from three prior cycles — and where AI fits inside it",
       "Which infrastructure layer is currently mispriced and why",
@@ -151,7 +151,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   serious: {
     preheadline: "Written for serious allocators",
     hero: "Written for investors who manage serious capital.",
-    sub: "Not a newsletter. Not a course. 18,000 words of AI infrastructure research from a Palm Beach County investor with three decades of experience and his own capital in the trade.",
+    sub: "Not a newsletter. Not a course. a full research essay on AI infrastructure from a investor with three decades of experience and his own capital in the trade.",
     bullets: [
       "A thesis built from inside the trade, not from the sidelines",
       "Plain language, no hype, no fund pitch, no email required",
@@ -162,7 +162,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   window: {
     preheadline: "Every infrastructure cycle has a window",
     hero: "The positioning window is 18 to 24 months.",
-    sub: "Each technology cycle has the same shape. Dean Gallagher, Palm Beach County, Florida, wrote 18,000 words explaining where we are inside the AI version of that window.",
+    sub: "Each technology cycle has the same shape. Dean Gallagher wrote a full essay explaining where we are inside the AI version of that window.",
     timeline: [
       { era: "Internet", years: "1996 – 1999" },
       { era: "Mobile", years: "2007 – 2010" },
@@ -179,7 +179,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   picks: {
     preheadline: "Picks & shovels — every cycle",
     hero: "Levi Strauss made more money than any miner in the Gold Rush.",
-    sub: "Picks and shovels. Every technology wave. Dean Gallagher, Palm Beach County, Florida, wrote the AI infrastructure version of this thesis. It's free.",
+    sub: "Picks and shovels. Every technology wave. Dean Gallagher wrote the AI infrastructure version of this thesis. It's free.",
     bullets: [
       "The historical pattern across five technology cycles",
       "Why infrastructure compounds when the application layer doesn't",
@@ -188,9 +188,9 @@ const VARIANTS: Record<VariantKey, Variant> = {
     cta: "Read the picks & shovels thesis →",
   },
   "100": {
-    preheadline: "Limited print run — Palm Beach County investor",
+    preheadline: "Limited Print Run",
     hero: "100 free printed copies of this research.",
-    sub: "Dean Gallagher is mailing the first 100 copies of his AI infrastructure research, free. After 100, the printed edition is $97. From a Palm Beach County, Florida investor — three years of work in seven chapters.",
+    sub: "Dean is giving away 100 printed copies. Free. No shipping. 100 copies. Free. No shipping.",
     bullets: [
       "Hardcover printed, signed, shipped — no obligation",
       "Building a small network of serious investors who understand the thesis",
@@ -199,9 +199,9 @@ const VARIANTS: Record<VariantKey, Variant> = {
     cta: "Claim your free printed copy →",
   },
   investor: {
-    preheadline: "From the desk of a Palm Beach County investor",
+    preheadline: "From the Desk of the Author",
     hero: "I'm not a financial advisor. I'm an investor.",
-    sub: "Dean Gallagher writes: \"I live in Palm Beach County, Florida. I manage my own portfolio. I spent three years on one thesis about AI infrastructure. I wrote 18,000 words. I'm giving it away — not to sell anything, but to find the investors who see what I see.\"",
+    sub: "Dean Gallagher writes: \"I live in Wellington, Florida. I manage my own portfolio. I spent three years on one thesis about AI infrastructure. I wrote a full essay. I'm giving it away — not to sell anything, but to find the investors who see what I see.\"",
     bullets: [
       "First-person research from inside the trade",
       "No fund pitch, no upsell, no sales call",
@@ -212,7 +212,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   agents: {
     preheadline: "The fastest-growing economic population on Earth",
     hero: "350 million AI agents today. Over 2 billion by 2027.",
-    sub: "More than the entire global workforce. The infrastructure running them is the investment story of this decade. Dean Gallagher, Palm Beach County, Florida, wrote the thesis.",
+    sub: "More than the entire global workforce. The infrastructure running them is the investment story of this decade. Dean Gallagher wrote the thesis.",
     bigNumber: "2B+",
     bigNumberLabel: "Projected AI agents by 2027 — more than the global workforce",
     bullets: [
@@ -225,7 +225,7 @@ const VARIANTS: Record<VariantKey, Variant> = {
   layer: {
     preheadline: "Apps get headlines. Infrastructure compounds.",
     hero: "The apps get the headlines. The infrastructure gets the compounding.",
-    sub: "Internet. Mobile. Cloud. Same shape every cycle. Dean Gallagher, Palm Beach County, Florida, wrote 18,000 words on which AI infrastructure layer is next.",
+    sub: "Internet. Mobile. Cloud. Same shape every cycle. Dean Gallagher wrote a full essay on which AI infrastructure layer is next.",
     bullets: [
       "The five infrastructure chokepoints in detail",
       "Why the 'application' layer is the wrong place to look",
@@ -236,11 +236,11 @@ const VARIANTS: Record<VariantKey, Variant> = {
   book: {
     preheadline: "Beyond Humanity",
     hero: "Beyond Humanity.",
-    sub: "18,000 words of AI infrastructure research. Dean Gallagher. Palm Beach County, Florida. Free. No email required to read it.",
+    sub: "a full research essay on AI infrastructure. Dean Gallagher. Wellington, Florida. Free. No email required to read it.",
     bullets: [
       "Seven chapters. Plain language. Three years of work.",
       "Free PDF instantly. Free printed copy shipped.",
-      "Written by a Palm Beach County investor for serious allocators.",
+      "Written by a investor for serious allocators.",
     ],
     cta: "Get the free book →",
   },

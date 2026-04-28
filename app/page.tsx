@@ -13,4 +13,19 @@ export default function HomePage() {
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
 
-  async function handleSubmit
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName, phone, address, city, state, zip }),
+      });
+      if (!res.ok) throw new Error();
+      router.push("/thank-you");
+    } catch {
+      setStatus("error");
+    }
+  }

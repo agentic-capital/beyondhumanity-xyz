@@ -154,7 +154,28 @@ export default function VariantClient({ variant }: { variant: Variant }) {
   };
 
   return (
-    <main style={{ background: NAVY, minHeight: "100vh", color: "#fff", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+    <main style={{ background: NAVY, minHeight: "100vh", color: "#fff", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", position: "relative", overflow: "hidden" }}>
+      {/* Gradient wash — subtle ocean/waterfront feel */}
+      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 80% 60% at 100% 100%, rgba(0,100,80,0.08) 0%, transparent 70%)", zIndex: 0 }} />
+
+      {/* Palm tree SVG silhouettes — right side, fixed, low opacity */}
+      <div style={{ position: "fixed", right: 0, top: 0, bottom: 0, width: 220, pointerEvents: "none", opacity: 0.08, zIndex: 0 }} aria-hidden="true">
+        <svg viewBox="0 0 220 800" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "100%" }}>
+          {/* Trunk 1 */}
+          <path d="M160 800 C158 720 155 640 152 560 C149 480 145 400 148 320 C151 240 158 180 162 140" stroke="#00c4e0" strokeWidth="7" fill="none" strokeLinecap="round"/>
+          {/* Fronds 1 */}
+          <path d="M162 140 C140 110 100 95 75 80 M162 140 C155 105 165 70 175 50 M162 140 C185 112 215 105 230 95 M162 140 C170 108 195 100 215 115 M162 140 C145 115 130 100 110 110" stroke="#00c4e0" strokeWidth="4" fill="none" strokeLinecap="round"/>
+          {/* Trunk 2 — smaller, offset */}
+          <path d="M195 800 C193 740 190 680 188 620 C186 560 183 500 185 450 C187 400 191 360 194 330" stroke="#00c4e0" strokeWidth="5" fill="none" strokeLinecap="round"/>
+          {/* Fronds 2 */}
+          <path d="M194 330 C175 305 145 295 125 285 M194 330 C188 300 196 272 204 255 M194 330 C212 308 230 303 242 298 M194 330 C200 305 215 298 228 310" stroke="#00c4e0" strokeWidth="3" fill="none" strokeLinecap="round"/>
+        </svg>
+      </div>
+
+      {/* Top announcement banner */}
+      <div style={{ background: GOLD, color: NAVY, textAlign: "center", padding: "10px 20px", fontSize: 13, fontWeight: 700, letterSpacing: "0.06em", position: "relative", zIndex: 10 }}>
+        🌴 Palm Beach County &nbsp;·&nbsp; Private Offer &nbsp;·&nbsp; Limited Time
+      </div>
       <style>{`
         * { box-sizing: border-box; }
         .bh-wrap {
@@ -224,7 +245,7 @@ export default function VariantClient({ variant }: { variant: Variant }) {
         .pac-logo::after { display: none !important; }
       `}</style>
 
-      <div className="bh-wrap">
+      <div className="bh-wrap" style={{ position: "relative", zIndex: 1 }}>
 
         {/* CONTENT */}
         <div className="bh-content">
@@ -309,7 +330,22 @@ export default function VariantClient({ variant }: { variant: Variant }) {
 
         {/* FORM COLUMN */}
         <div className="bh-form-col">
-          <div style={{ textAlign: "center", margin: "32px 0 16px" }}>
+          {/* Scarcity badge */}
+          <div style={{ textAlign: "center", margin: "0 0 12px" }}>
+            <span style={{
+              display: "inline-block",
+              border: `1px solid ${GOLD}`,
+              color: GOLD,
+              background: NAVY,
+              borderRadius: 999,
+              padding: "5px 14px",
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "0.03em",
+            }}>🌴 Palm Beach County Exclusive — Limited copies remaining</span>
+          </div>
+
+          <div style={{ textAlign: "center", margin: "0 0 16px" }}>
             <img
               src="/book-cover.png"
               alt="Beyond Humanity"
@@ -328,10 +364,10 @@ export default function VariantClient({ variant }: { variant: Variant }) {
             boxShadow: "0 8px 28px rgba(0,0,0,0.3)",
           }}>
             <h2 style={{ fontSize: 19, fontWeight: 700, color: "#fff", margin: "0 0 6px", lineHeight: 1.25 }}>
-              Send me the book
+              Claim your Palm Beach copy
             </h2>
             <p style={{ fontSize: 13, color: MUTED, margin: "0 0 16px", lineHeight: 1.5 }}>
-              Free PDF instantly. Free printed copy shipped. No sales calls.
+              Dean personally signs and ships each copy to Palm Beach County neighbors. Free. No obligation.
             </p>
 
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -384,19 +420,23 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                 <p style={{ color: "#fca5a5", fontSize: 13, margin: 0 }}>Something went wrong. Please try again.</p>
               )}
 
+              <p style={{ fontSize: 12, color: MUTED, fontStyle: "italic", margin: "4px 0 2px", lineHeight: 1.6 }}>
+                &ldquo;I&rsquo;m giving these away because I want feedback from other serious investors here in Palm Beach County. That&rsquo;s it.&rdquo;
+              </p>
+
               <button type="submit" disabled={status === "loading"} className="bh-btn" style={{ marginTop: 6 }}>
                 {status === "loading" ? "Sending…" : variant.cta}
               </button>
 
               <p style={{ fontSize: 12, color: MUTED, textAlign: "center", margin: "4px 0 0" }}>
-                Printed copy shipped free. No obligation.
+                Palm Beach County only &nbsp;·&nbsp; Limited print run &nbsp;·&nbsp; Ships free
               </p>
             </form>
           </div>
         </div>
       </div>
 
-      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 20px", textAlign: "center", marginTop: 48 }}>
+      <footer style={{ borderTop: `1px solid ${BORDER}`, padding: "28px 20px", textAlign: "center", marginTop: 48, position: "relative", zIndex: 1 }}>
         <p style={{ fontSize: 12, color: MUTED, lineHeight: 1.7, maxWidth: 620, margin: "0 auto" }}>
           For informational and educational purposes only. Not investment advice.
           <br />

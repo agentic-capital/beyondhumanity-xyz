@@ -71,7 +71,25 @@ export async function POST(req: NextRequest) {
     }),
   }).catch(console.error);
 
-  // ── 2. Close CRM ─────────────────────────────────────────────────────────
+  // ── 2. Brevo SMS ─────────────────────────────────────────────────────────
+  // Send a welcome SMS if phone was provided
+  if (phone) {
+    const smsPhone = phone.replace(/\D/g, "").replace(/^1/, ""); // strip to digits, remove leading 1
+    if (smsPhone.length >= 10) {
+      await fetch("https://api.brevo.com/v3/transactionalSMS/sms", {
+        method: "POST",
+        headers: { "api-key": BREVO_KEY, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sender: "BeyondHum",
+          recipient: `+1${smsPhone.slice(-10)}`,
+          content: `${firstName || "Hi"} - your Beyond Humanity research is on its way! Read it now: https://beyondhumanity.xyz/beyond-humanity-report.pdf - Dean Gallagher`,
+          type: "transactional",
+        }),
+      }).catch(console.error);
+    }
+  }
+
+  // ── 3. Close CRM ─────────────────────────────────────────────────────────
   if (CLOSE_API_KEY) {
     const auth = await closeAuth();
     const headers = { Authorization: auth, "Content-Type": "application/json" };

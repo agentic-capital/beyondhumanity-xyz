@@ -4,6 +4,8 @@ import VariantClient from "./VariantClient";
 type VariantKey =
   | "census" | "book" | "broken" | "numbers" | "sequel"
   | "goldrush" | "foryou" | "gap" | "insider" | "hybrid"
+  // video-matched variants
+  | "florida" | "why-free" | "wrong-layer"
   // legacy slugs kept alive so old URLs don't 404
   | "pattern" | "data" | "serious" | "window" | "picks"
   | "100" | "investor" | "agents" | "layer";
@@ -121,6 +123,47 @@ const VARIANTS: Record<VariantKey, Variant> = {
       "100 copies of the essay. Free. No shipping.",
     ],
     cta: "Get the free essay →",
+  },
+
+  // ── VIDEO-MATCHED VARIANTS ──────────────────────────────────────────────────
+
+  // v1: "Beyond Humanity — Free Book for Palm Beach County Investors"
+  florida: {
+    preheadline: "For Florida Investors · Free Book",
+    hero: "Most Florida investors will miss the window on this.",
+    sub: "We're earlier than you think. Less than 3% of the world is using or paying for AI today — almost all of it concentrated in the US, most of it still on the coasts. Dean spent three years identifying the infrastructure layer that compounds regardless of which AI model wins. 100 free printed copies.",
+    bullets: [
+      "Why the US leads the world in AI adoption — and what that means for the investors who recognize it first",
+      "The infrastructure layer that serves every AI model, every company, every agent — regardless of who wins",
+      "100 printed copies. Free. Shipped to your door. No sales call.",
+    ],
+    cta: "Ship my free copy →",
+  },
+
+  // v2: "This Book Is Free — Here's Why"
+  "why-free": {
+    preheadline: "Why Is This Book Free? (The Real Reason)",
+    hero: "Dean is giving away 100 printed copies. Here's exactly why.",
+    sub: "He's not selling a course. He's not running a newsletter. He's forming a fund — and he wants 100 serious investors to read the research first, with no obligation. If the thesis resonates, you can reach out. If not, keep the book. Either way, it's free.",
+    bullets: [
+      "100 printed copies of a 3-year research project on AI infrastructure",
+      "Written by an investor who has his own capital in the trade",
+      "No sales call. No pitch. Just the research — and an address to ship it to.",
+    ],
+    cta: "Get my free copy (here's why) →",
+  },
+
+  // v3: "Most Investors Are Chasing the Wrong Layer of AI"
+  "wrong-layer": {
+    preheadline: "You're Looking at the Wrong Layer",
+    hero: "Most investors are chasing AI apps. The money is underneath.",
+    sub: "ChatGPT. Copilot. Gemini. All apps. Every one of them runs on compute, power, memory, and networking. In every prior technology cycle — internet, mobile, cloud — the infrastructure underneath compounded far longer than the apps on top. 350 million AI agents are already running on that infrastructure. 100 free copies of the essay.",
+    bullets: [
+      "Internet made Cisco rich, not the dot-coms. Mobile made Qualcomm rich, not the app developers.",
+      "350 million AI agents already running on the infrastructure layer — growing 20% per month",
+      "The specific infrastructure categories Dean identified as the AI picks-and-shovels play",
+    ],
+    cta: "Get the infrastructure thesis (free) →",
   },
 
   // ── LEGACY VARIANTS (kept so old URLs don't break) ──────────────────────────

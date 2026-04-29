@@ -326,20 +326,12 @@ export default function VariantClient({ variant }: { variant: Variant }) {
                 src="/book-cover.png"
                 alt="Beyond Humanity"
                 style={{
-                  width: 240,
-                  maxWidth: "78vw",
+                  width: 220,
+                  maxWidth: "72vw",
                   height: "auto",
-                  borderRadius: 4,
+                  borderRadius: 3,
                   display: "inline-block",
-                  /* printed book look: deep shadows + warm gold glow + slight right-edge depth */
-                  boxShadow: [
-                    "6px 0 0 0 rgba(0,0,0,0.35)",        /* spine edge */
-                    "0 32px 64px rgba(0,0,0,0.65)",       /* deep drop shadow */
-                    "0 12px 28px rgba(0,0,0,0.45)",       /* mid shadow */
-                    "0 4px 8px rgba(0,0,0,0.3)",          /* tight shadow */
-                    "0 0 40px rgba(245,200,66,0.12)",     /* gold glow */
-                  ].join(", "),
-                  transform: "perspective(800px) rotateY(-4deg)",  /* slight 3D angle */
+                  boxShadow: "0 8px 40px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.4)",
                 }}
               />
             </div>

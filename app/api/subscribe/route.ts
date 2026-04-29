@@ -41,6 +41,13 @@ export async function POST(req: NextRequest) {
   const today = new Date().toISOString().slice(0, 10);
   const displayName = firstName ? `${firstName} — Beyond Humanity` : `Lead — ${email}`;
 
+  // Format phone to E.164 for Brevo SMS field (+1XXXXXXXXXX)
+  const rawDigits = (phone || "").replace(/\D/g, "");
+  const e164Phone = rawDigits.length === 10 ? `+1${rawDigits}`
+    : rawDigits.length === 11 && rawDigits.startsWith("1") ? `+${rawDigits}`
+    : rawDigits.length > 7 ? `+1${rawDigits.slice(-10)}`
+    : null;
+
   // ── 1. Brevo: add to list + send template ────────────────────────────────
   await fetch("https://api.brevo.com/v3/contacts", {
     method: "POST",
@@ -49,7 +56,7 @@ export async function POST(req: NextRequest) {
       email,
       attributes: {
         FIRSTNAME: firstName || "",
-        SMS: phone || "",
+        ...(e164Phone ? { SMS: e164Phone } : {}),
         ADDRESS: address || "",
         CITY: city || "",
         STATE: state || "",
